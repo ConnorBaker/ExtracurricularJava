@@ -7,8 +7,21 @@
 *  Description: Compute highly composite numbers.
 *
 *  Note: I suspect that all arbitrarily large n that we are searching for end
-*  in a zero. As such, I've decided to add 10 each iteration and skip testing
-*  inbetween values.
+*  in a zero. As such, we could iterate by 10 each time.
+*
+*  TODO: Copy each thread's output to an array list for sanitization. As the
+*  algorithm works currently, each thread is isolated from the others. As such
+*  they may output a value that (based on the numbers the thread has processed
+*  previously) does in fact have the smallest n for largest number of divisors
+*  -- however, it may not be true with respect to the other threads. The simple
+*  solution for this is to put all the values into an array list, and then
+*  double check for duplicate values of number of divisors, tossing the one
+*  with the larger n.
+*
+*  TODO: Find a way to reuse code. I hate copy-pasting code.
+*
+*  TODO: Find a way to mutate the first thread to significantly cut down on the
+*  amount of code in this program.
 */
 
 /* Import necessary packages */
@@ -34,7 +47,7 @@ class Compute0 extends Thread {
     BigInteger number_of_divisors0 = BigInteger.valueOf(0);
     BigInteger temp_number_of_divisors0 = BigInteger.valueOf(0);
 
-    while (n0.intValue()<5038) {
+    while (true) {
       if (divisor0.compareTo(n0.divide(BigInteger.valueOf(2))) == 1) {
         if ((temp_number_of_divisors0.compareTo(number_of_divisors0)) == 1) {
           number_of_divisors0 = temp_number_of_divisors0;
@@ -62,7 +75,7 @@ class Compute1 extends Thread {
     BigInteger number_of_divisors1 = BigInteger.valueOf(0);
     BigInteger temp_number_of_divisors1 = BigInteger.valueOf(0);
 
-    while (n1.intValue()<5039) {
+    while (true) {
       if (divisor1.compareTo(n1.divide(BigInteger.valueOf(2))) == 1) {
         if ((temp_number_of_divisors1.compareTo(number_of_divisors1)) == 1) {
           number_of_divisors1 = temp_number_of_divisors1;
@@ -90,7 +103,7 @@ class Compute2 extends Thread {
     BigInteger number_of_divisors2 = BigInteger.valueOf(0);
     BigInteger temp_number_of_divisors2 = BigInteger.valueOf(0);
 
-    while (n2.intValue()<5040) {
+    while (true) {
       if (divisor2.compareTo(n2.divide(BigInteger.valueOf(2))) == 1) {
         if ((temp_number_of_divisors2.compareTo(number_of_divisors2)) == 1) {
           number_of_divisors2 = temp_number_of_divisors2;
@@ -118,7 +131,7 @@ class Compute3 extends Thread {
     BigInteger number_of_divisors3 = BigInteger.valueOf(0);
     BigInteger temp_number_of_divisors3 = BigInteger.valueOf(0);
 
-    while (n3.intValue()<5041) {
+    while (true) {
       if (divisor3.compareTo(n3.divide(BigInteger.valueOf(2))) == 1) {
         if ((temp_number_of_divisors3.compareTo(number_of_divisors3)) == 1) {
           number_of_divisors3 = temp_number_of_divisors3;

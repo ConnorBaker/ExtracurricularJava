@@ -1,7 +1,7 @@
 /*
 *  filename: DecimalToInteger.java
 *  author: Connor Baker
-*  version: 0.1c
+*  version: 0.1d
 *  description: Convert a decimal entered by user (between 0 and 1) into its string
 *  representation (e.g. 0.123 becomes "0.123").
 */
@@ -15,14 +15,14 @@ public class DecimalToInteger {
   int length;
   // String stringRepresentation;
 
-  int[] arrayOfInts;
+  long[] arrayOfLongs;
   // char arrayOfChars[];
 
   DecimalToInteger() {
     getDecimal();
     getLength();
-    arrayOfInts = new int[length];
-    getArrayOfInts();
+    arrayOfLongs = new long[length];
+    getArrayOfLongs();
     // char arrayOfChars[] = new char[length+2]; // +2 because it holds the '0.' part
     // getArrayOfChars();
     // getStringRepresentation();
@@ -66,15 +66,15 @@ public class DecimalToInteger {
   //   System.out.println(stringRepresentation);
   // }
 
-  public void getArrayOfInts() {
-    int tempInt = 0;
+  public void getArrayOfLongs() {
+    long tempInt = 0;
     int count = 0;
     double tempDecimal = decimal;
     while ((tempDecimal % 1) != 0) {
       tempDecimal *= 10;
-      arrayOfInts[count] = (int)tempDecimal - tempInt;
-      System.out.println("arrayOfInts["+count+"] is "+arrayOfInts[count]);
-      tempInt = (int)tempDecimal * (int)Math.pow(10, count+1);
+      arrayOfLongs[count] = (long)tempDecimal - tempInt;
+      System.out.println("arrayOfLongs["+count+"] is "+arrayOfLongs[count]);
+      tempInt = (long)tempDecimal * (long)Math.pow(10, count+1);
       System.out.println("tempInt is "+tempInt);
       count++;
     }
@@ -96,25 +96,25 @@ public class DecimalToInteger {
   //   char character = '0';
   //
   //   // Find the character representation of the integer
-  //   if (arrayOfInts[i] == 0) {
+  //   if (arrayOfLongs[i] == 0) {
   //     character = '0';
-  //   } else if (arrayOfInts[i] == 1) {
+  //   } else if (arrayOfLongs[i] == 1) {
   //     character = '1';
-  //   } else if (arrayOfInts[i] == 2) {
+  //   } else if (arrayOfLongs[i] == 2) {
   //     character = '2';
-  //   } else if (arrayOfInts[i] == 3) {
+  //   } else if (arrayOfLongs[i] == 3) {
   //     character = '3';
-  //   } else if (arrayOfInts[i] == 4) {
+  //   } else if (arrayOfLongs[i] == 4) {
   //     character = '4';
-  //   } else if (arrayOfInts[i] == 5) {
+  //   } else if (arrayOfLongs[i] == 5) {
   //     character = '5';
-  //   } else if (arrayOfInts[i] == 6) {
+  //   } else if (arrayOfLongs[i] == 6) {
   //     character = '6';
-  //   } else if (arrayOfInts[i] == 7) {
+  //   } else if (arrayOfLongs[i] == 7) {
   //     character = '7';
-  //   } else if (arrayOfInts[i] == 8) {
+  //   } else if (arrayOfLongs[i] == 8) {
   //     character = '8';
-  //   } else if (arrayOfInts[i] == 9) {
+  //   } else if (arrayOfLongs[i] == 9) {
   //     character = '9';
   //   }
   //

@@ -1,7 +1,7 @@
 /*
 *  filename: DecimalToInteger.java
 *  author: Connor Baker
-*  version: 0.1b
+*  version: 0.1c
 *  description: Convert a decimal entered by user (between 0 and 1) into its string
 *  representation (e.g. 0.123 becomes "0.123").
 */
@@ -15,13 +15,13 @@ public class DecimalToInteger {
   int length;
   // String stringRepresentation;
 
-  int arrayOfInts[];
+  int[] arrayOfInts;
   // char arrayOfChars[];
 
   DecimalToInteger() {
     getDecimal();
     getLength();
-    int arrayOfInts[] = new int[length];
+    arrayOfInts = new int[length];
     getArrayOfInts();
     // char arrayOfChars[] = new char[length+2]; // +2 because it holds the '0.' part
     // getArrayOfChars();
@@ -48,7 +48,7 @@ public class DecimalToInteger {
 
   public void getLength() {
     // Initialize our counter
-    int length = 0;
+    length = 0;
     double tempDecimal = decimal;
 
     // Get the length of the decimal
@@ -70,15 +70,9 @@ public class DecimalToInteger {
     int tempInt = 0;
     int count = 0;
     double tempDecimal = decimal;
-    System.out.println("Here1");
-    System.out.println(decimal);
     while ((tempDecimal % 1) != 0) {
       tempDecimal *= 10;
-      System.out.println("Here2");
-      System.out.println("decimal is "+tempDecimal);
-      System.out.println("array length is "+arrayOfInts.length);
       arrayOfInts[count] = (int)tempDecimal - tempInt;
-      System.out.println("Here3");
       System.out.println("arrayOfInts["+count+"] is "+arrayOfInts[count]);
       tempInt = (int)tempDecimal * (int)Math.pow(10, count+1);
       System.out.println("tempInt is "+tempInt);

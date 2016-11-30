@@ -1,2 +1,14 @@
 
 *.class
+
+*.aux
+
+*.lof
+
+*.log
+
+*.lot
+
+*.toc
+
+*.gz

@@ -1,0 +1,29 @@
+0.54325
+Decimal is passed into getLong()
+getLong() returns 54325
+getLength() is called on decimal
+getLength() returns 5
+getArrayRepresentation() is called on 54325
+a[0] = 54325/10^4 = 5
+a[1] = (54325 - a[0]*10^4)/10^3 = 4
+a[2] = (54325 - a[0]*10^4 - a[1]*10^3)/10^2 = 3
+a[3] = (54325 - a[0]*10^4 - a[1]*10^3 - a[2]*10^2)/10^1 = 2
+a[4] = (54325 - a[0]*10^4 - a[1]*10^3 - a[2]*10^2 - a[3]*10^1)/10^0 = 5
+
+ex:
+long l = 54325;
+int[] a = new int[le];
+
+// We have to compute the first value outside of the for loop
+a[0] = (int)(l/Math.pow(10, le-1.0));
+for (int i = 1; i < le; i++) {
+  a[i] = (int)((l - a[0]*Math.pow(10, le-1) - a[1]*Math.pow(10, le-2) - ... - a[i-1]*Math.pow(10, le-1-i))/Math.pow(10, le-1-i));
+}
+
+Given: l = 54325, le = 5, a[0] = 5
+
+then for all i > 1
+
+a[i] = (int)((l - a[0]*10^(le-1) - ... - a[i-1]*10^(le-1-i))/10^(le-1-i));
+
+a[i+1] = (int)((l - a[0]*10^(le-1) - ... - a[i-1]*10^(le-1-i))/10^(le-1-i));

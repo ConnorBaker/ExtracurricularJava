@@ -1,7 +1,7 @@
 /*
 *  filename: DecimalToString.java
 *  author: Connor Baker, IllegalArgument
-*  version: 0.2a
+*  version: 0.2b
 *  description: Convert a decimal entered by user (between 0 and 1) into its string
 *               representation (e.g. 0.123 becomes "0.123").
 *  references: The ever knowledgeable IllegalArgument of chatroom legends (plural)
@@ -129,34 +129,8 @@ String stringRepresentation; // the string representation of the decimal
 
   // Method to find the character representation of the integer at a given index of a[]
   public char getCharacterAtIndex(int i) {
-    // Initialize our character
-    char character = '0';
-
-    // Find the character representation of the integer
-    if (a[i] == 0) {
-      character = '0';
-    } else if (a[i] == 1) {
-      character = '1';
-    } else if (a[i] == 2) {
-      character = '2';
-    } else if (a[i] == 3) {
-      character = '3';
-    } else if (a[i] == 4) {
-      character = '4';
-    } else if (a[i] == 5) {
-      character = '5';
-    } else if (a[i] == 6) {
-      character = '6';
-    } else if (a[i] == 7) {
-      character = '7';
-    } else if (a[i] == 8) {
-      character = '8';
-    } else if (a[i] == 9) {
-      character = '9';
-    }
-
     // Return the character to the method caller
-    return character;
+    return (char)(a[i]+'0'); // You can add an int to a char because why the hell not
   }
 
   // main method

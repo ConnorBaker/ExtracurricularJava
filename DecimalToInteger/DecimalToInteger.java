@@ -1,7 +1,7 @@
 /*
 *  filename: DecimalToInteger.java
 *  author: Connor Baker
-*  version: 0.1a
+*  version: 0.1b
 *  description: Convert a decimal entered by user (between 0 and 1) into its string
 *  representation (e.g. 0.123 becomes "0.123").
 */
@@ -15,7 +15,7 @@ public class DecimalToInteger {
   int length;
   // String stringRepresentation;
 
-  // int arrayOfInts[];
+  int arrayOfInts[];
   // char arrayOfChars[];
 
   DecimalToInteger() {
@@ -76,6 +76,7 @@ public class DecimalToInteger {
       tempDecimal *= 10;
       System.out.println("Here2");
       System.out.println("decimal is "+tempDecimal);
+      System.out.println("array length is "+arrayOfInts.length);
       arrayOfInts[count] = (int)tempDecimal - tempInt;
       System.out.println("Here3");
       System.out.println("arrayOfInts["+count+"] is "+arrayOfInts[count]);

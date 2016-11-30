@@ -1,7 +1,7 @@
 /*
 *  filename: DecimalToInteger.java
 *  author: Connor Baker
-*  version: 0.1d
+*  version: 0.1e
 *  description: Convert a decimal entered by user (between 0 and 1) into its string
 *  representation (e.g. 0.123 becomes "0.123").
 */
@@ -13,6 +13,7 @@ import java.lang.Character;
 public class DecimalToInteger {
   double decimal;
   int length;
+  long longRepresenation;
   // String stringRepresentation;
 
   long[] arrayOfLongs;
@@ -21,8 +22,12 @@ public class DecimalToInteger {
   DecimalToInteger() {
     getDecimal();
     getLength();
-    arrayOfLongs = new long[length];
-    getArrayOfLongs();
+    getLong();
+    System.out.println(decimal);
+    System.out.println(length);
+    System.out.println(longRepresenation);
+    // arrayOfLongs = new long[length];
+    // getArrayOfLongs();
     // char arrayOfChars[] = new char[length+2]; // +2 because it holds the '0.' part
     // getArrayOfChars();
     // getStringRepresentation();
@@ -54,8 +59,21 @@ public class DecimalToInteger {
     // Get the length of the decimal
     while ((tempDecimal%1) != 0) {
       tempDecimal *= 10;
+      System.out.println("tempDecimal is "+tempDecimal);
       length++;
     }
+  }
+
+  public void getLong() {
+    // Initialize the variable that will hold the content of the decimal
+    longRepresenation = 0;
+    double tempDecimal = decimal;
+
+    // Get the representation of the decimal
+    while ((tempDecimal%1) != 0) {
+      tempDecimal *= 10;
+    }
+    longRepresenation = (long)tempDecimal;
   }
 
   // public void getStringRepresentation() {
@@ -67,17 +85,7 @@ public class DecimalToInteger {
   // }
 
   public void getArrayOfLongs() {
-    long tempInt = 0;
-    int count = 0;
-    double tempDecimal = decimal;
-    while ((tempDecimal % 1) != 0) {
-      tempDecimal *= 10;
-      arrayOfLongs[count] = (long)tempDecimal - tempInt;
-      System.out.println("arrayOfLongs["+count+"] is "+arrayOfLongs[count]);
-      tempInt = (long)tempDecimal * (long)Math.pow(10, count+1);
-      System.out.println("tempInt is "+tempInt);
-      count++;
-    }
+
   }
 
   // public void getArrayOfChars() {

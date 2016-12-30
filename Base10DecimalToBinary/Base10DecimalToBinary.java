@@ -1,9 +1,13 @@
 /*
 *  filename: Base10DecimalToBinary.java
 *  author: Connor Baker
-*  version: 0.2a
+*  version: 0.2b
 *  description: Convert a decimal entered by user (between 0 and 1) into its
-*  binary representation (e.g. 0.625 becomes "0.101").
+*  binary representation (e.g. 0.625 becomes "0.101"). Allows for arbitrary
+*  precision given that there is enough memory allowed in the stack. The stack
+*  size can be changed by executing the program using "java -Xss8g
+*  Base10DecimalToBinary" where 8g allocated eight gigabytes of memory to the
+*  stack.
 *  references: http://cs.furman.edu/digitaldomain/more/ch6/dec_frac_to_bin.htm
 */
 
@@ -14,13 +18,17 @@ import java.util.ArrayList;
 
 public class Base10DecimalToBinary {
   // Declare the objects used throughout the program
-  int count = 0;
+  final static boolean debugging = false;
+  long count = 0;
+  long numberOfFiguresToTrack;
   BigDecimal decimal;
   ArrayList<Character> binaryRepresentation = new ArrayList<>();
+  Scanner grabber = new Scanner(System.in);
 
   // Default, no-arg constructor
   Base10DecimalToBinary() {
     initialization();
+    queryForAccuracy();
     binaryRepresentation.add('0');
     binaryRepresentation.add('.');
     decimalFractionToBinary(decimal);
@@ -28,17 +36,19 @@ public class Base10DecimalToBinary {
 
   // Method to initialize the object
   public void initialization() {
-    Scanner grabber = new Scanner(System.in);
     System.out.println("Input the decimal fraction of your choice between 0"
       + " and 1 (exclusive)");
-    String input = grabber.nextLine();
-    decimal = new BigDecimal(input);
+    decimal = new BigDecimal(grabber.nextLine());
   }
 
+  public void queryForAccuracy() {
+    System.out.println("Input the number of figures you want to track");
+    numberOfFiguresToTrack = grabber.nextLong();
+  }
 
   public void decimalFractionToBinary(BigDecimal decimal) {
     // Check to see if the program needs to stop
-    if (count > 16) {
+    if (count > numberOfFiguresToTrack) {
       return;
     }
 
@@ -47,20 +57,28 @@ public class Base10DecimalToBinary {
     decimal = decimal.multiply(new BigDecimal("2.0"));
 
     if (decimal.intValue() == 0) {
-      System.out.println("Value to be added to binary representation is 0");
+      if (debugging == true) {
+        System.out.println("Value to be added to binary representation is 0");
+      }
       binaryRepresentation.add('0');
     } if (decimal.intValue() == 1) {
-      System.out.println("Value to be added to binary representation is 1");
+      if (debugging == true) {
+        System.out.println("Val ue to be added to binary representation is 1");
+      }
       binaryRepresentation.add('1');
     } else {
-      System.out.println("Something weird is happening!");
+      if (debugging == true) {
+        System.out.println("Something weird is happening!");
+      }
     }
 
     // Modify the decimal to pass back into the method, recursively
     decimal = decimal.subtract(decimal.setScale(0, RoundingMode.DOWN));
 
-    // Print out the contents of our binaryRepresentation
-    System.out.println(binaryRepresentation);
+    if (count == numberOfFiguresToTrack) {
+      // Print out the contents of our binaryRepresentation
+      System.out.println(binaryRepresentation);
+    }
 
     // Increment the execution counter
     count++;

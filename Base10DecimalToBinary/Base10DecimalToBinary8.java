@@ -1,7 +1,7 @@
 /*
 *  filename: Base10DecimalToBinary8.java
 *  author: Connor Baker
-*  version: 0.1a
+*  version: 0.1b
 *  description: Convert a decimal entered by user (between 0 and 1) into its
 *  binary representation (e.g. 0.625 becomes "0.101"). Allows for arbitrary
 *  precision given that there is enough memory allowed in the stack. The stack
@@ -58,7 +58,7 @@ public class Base10DecimalToBinary8 {
   // Method to initialize the object
   public void initialization() {
     System.out.println("Input the decimal fraction of your choice between 0"
-      + " and 1 (exclusive)");
+    + " and 1 (exclusive)");
     decimal = new BigDecimal(grabber.nextLine());
   }
 
@@ -84,128 +84,128 @@ public class Base10DecimalToBinary8 {
     // truncates the decimal portion for us)
     if (decimal.intValue() == 0) {
       if (debugging == true) {
-         System.out.println("decimal.intValue() == 0");
-       }
+        System.out.println("decimal.intValue() == 0");
+      }
       binaryRepresentation.add('0');
       binaryRepresentation.add('0');
       binaryRepresentation.add('0');
       numberOfDecimalPlaces += 3;
       if (debugging == true) {
-         System.out.println(decimal);
-         System.out.println("0, 0, 0");
-       }
+        System.out.println(decimal);
+        System.out.println("0, 0, 0");
+      }
     }
 
     // Second case where the decimal is greater than one, but less than two
     else if (decimal.intValue() == 1) {
       if (debugging == true) {
-         System.out.println("decimal.intValue() == 1");
-       }
+        System.out.println("decimal.intValue() == 1");
+      }
       decimal = decimal.subtract(VALUEOFONE);
       binaryRepresentation.add('0');
       binaryRepresentation.add('0');
       binaryRepresentation.add('1');
       numberOfDecimalPlaces += 3;
       if (debugging == true) {
-         System.out.println(decimal);
-         System.out.println("0, 0, 1");
-       }
+        System.out.println(decimal);
+        System.out.println("0, 0, 1");
+      }
     }
 
     // Third case where the decimal is greater than two, but less than three
     else if (decimal.intValue() == 2) {
       if (debugging == true) {
-         System.out.println("decimal.intValue() == 2");
-       }
+        System.out.println("decimal.intValue() == 2");
+      }
       decimal = decimal.subtract(VALUEOFTWO);
       binaryRepresentation.add('0');
       binaryRepresentation.add('1');
       binaryRepresentation.add('0');
       numberOfDecimalPlaces += 3;
       if (debugging == true) {
-         System.out.println(decimal);
-         System.out.println("0, 1, 0");
-       }
+        System.out.println(decimal);
+        System.out.println("0, 1, 0");
+      }
     }
 
     // Fourth case where the decimal is greater than three, but less than four
     else if (decimal.intValue() == 3) {
       if (debugging == true) {
-         System.out.println("decimal.intValue() == 3");
-       }
+        System.out.println("decimal.intValue() == 3");
+      }
       decimal = decimal.subtract(VALUEOFTHREE);
       binaryRepresentation.add('0');
       binaryRepresentation.add('1');
       binaryRepresentation.add('1');
       numberOfDecimalPlaces += 3;
       if (debugging == true) {
-         System.out.println(decimal);
-         System.out.println("0, 1, 1");
-       }
+        System.out.println(decimal);
+        System.out.println("0, 1, 1");
+      }
     }
 
     // Fifth case where the decimal is greater than four, but less than five
     else if (decimal.intValue() == 4) {
       if (debugging == true) {
-         System.out.println("decimal.intValue() == 4");
-       }
+        System.out.println("decimal.intValue() == 4");
+      }
       decimal = decimal.subtract(VALUEOFFOUR);
       binaryRepresentation.add('1');
       binaryRepresentation.add('0');
       binaryRepresentation.add('0');
       numberOfDecimalPlaces += 3;
       if (debugging == true) {
-         System.out.println(decimal);
-         System.out.println("1, 0, 0");
-       }
+        System.out.println(decimal);
+        System.out.println("1, 0, 0");
+      }
     }
 
     // Sixth case where the decimal is greater than five, but less than six
     else if (decimal.intValue() == 5) {
       if (debugging == true) {
-         System.out.println("decimal.intValue() == 5");
-       }
+        System.out.println("decimal.intValue() == 5");
+      }
       decimal = decimal.subtract(VALUEOFFIVE);
       binaryRepresentation.add('1');
       binaryRepresentation.add('0');
       binaryRepresentation.add('1');
       numberOfDecimalPlaces += 3;
       if (debugging == true) {
-         System.out.println(decimal);
-         System.out.println("1, 0, 1");
-       }
+        System.out.println(decimal);
+        System.out.println("1, 0, 1");
+      }
     }
 
     // Seventh case where the decimal is greater than six, but less than seven
     else if (decimal.intValue() == 6) {
       if (debugging == true) {
-         System.out.println("decimal.intValue() == 6");
-       }
+        System.out.println("decimal.intValue() == 6");
+      }
       decimal = decimal.subtract(VALUEOFSIX);
       binaryRepresentation.add('1');
       binaryRepresentation.add('1');
       binaryRepresentation.add('0');
       numberOfDecimalPlaces += 3;
       if (debugging == true) {
-         System.out.println(decimal);
-         System.out.println("1, 1, 0");
-       }
+        System.out.println(decimal);
+        System.out.println("1, 1, 0");
+      }
     }
 
     // Eigth case where the decimal is greater than seven, but less than eight
     else if (decimal.intValue() == 7) {
       if (debugging == true) {
-         System.out.println("decimal.intValue() == 7");
-       }
+        System.out.println("decimal.intValue() == 7");
+      }
       decimal = decimal.subtract(VALUEOFSEVEN);
       binaryRepresentation.add('1');
       binaryRepresentation.add('1');
       binaryRepresentation.add('1');
       numberOfDecimalPlaces += 3;
       if (debugging == true) {
-         System.out.println(decimal);
-         System.out.println("1, 1, 1");
-       }
+        System.out.println(decimal);
+        System.out.println("1, 1, 1");
+      }
     }
 
     // Sixth case where something stupid and werid happens
@@ -213,6 +213,7 @@ public class Base10DecimalToBinary8 {
       if (debugging == true) {
         System.out.println("Something weird is happening!");
       }
+      return;
     }
 
     // Increment the execution counter by four since we mutiplied by four

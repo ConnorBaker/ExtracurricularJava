@@ -1,7 +1,7 @@
 /*
-*  filename: Base10DecimalToBinary.java
+*  filename: Base10DecimalToBinary2.java
 *  author: Connor Baker
-*  version: 0.2b
+*  version: 0.1a
 *  description: Convert a decimal entered by user (between 0 and 1) into its
 *  binary representation (e.g. 0.625 becomes "0.101"). Allows for arbitrary
 *  precision given that there is enough memory allowed in the stack. The stack
@@ -11,22 +11,25 @@
 *  references: http://cs.furman.edu/digitaldomain/more/ch6/dec_frac_to_bin.htm
 */
 
-import java.math.RoundingMode;
 import java.math.BigDecimal;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Base10DecimalToBinary {
+public class Base10DecimalToBinary2 {
   // Declare the objects used throughout the program
   final static boolean debugging = false;
   long count = 0;
+  long numberOfDecimalPlaces=0;
   long numberOfFiguresToTrack;
   BigDecimal decimal;
+  final static BigDecimal VALUEOFZERO = new BigDecimal("0.0");
+  final static BigDecimal VALUEOFONE = new BigDecimal("1.0");
+  final static BigDecimal VALUEOFTWO = new BigDecimal("2.0");
   ArrayList<Character> binaryRepresentation = new ArrayList<>();
   Scanner grabber = new Scanner(System.in);
 
   // Default, no-arg constructor
-  Base10DecimalToBinary() {
+  Base10DecimalToBinary2() {
     initialization();
     queryForAccuracy();
     binaryRepresentation.add('0');
@@ -48,39 +51,56 @@ public class Base10DecimalToBinary {
 
   public void decimalFractionToBinary(BigDecimal decimal) {
     // Check to see if the program needs to stop
-    if (count > numberOfFiguresToTrack) {
+    if (numberOfDecimalPlaces >= numberOfFiguresToTrack) {
+      System.out.println("There were "+count+" iterations");
+      System.out.println(binaryRepresentation);
       return;
     }
 
-    // Multiply the decimal by 2 to test for a new addition to the binary
+    // Multiply the decimal by 4 to test for new additions to the binary
     // representation
-    decimal = decimal.multiply(new BigDecimal("2.0"));
+    decimal = decimal.multiply(VALUEOFTWO);
 
+    // First case where the decimal is less than one
+    // I use intValue here because I beleive it's faster than compareTo (it
+    // truncates the decimal portion for us)
     if (decimal.intValue() == 0) {
       if (debugging == true) {
-        System.out.println("Value to be added to binary representation is 0");
-      }
+         System.out.println("decimal.intValue() == 0");
+       }
       binaryRepresentation.add('0');
-    } if (decimal.intValue() == 1) {
+      numberOfDecimalPlaces++;
+    }
+
+    // Second case where the decimal is greater than one, but less than two
+    else if (decimal.intValue() == 1) {
       if (debugging == true) {
-        System.out.println("Val ue to be added to binary representation is 1");
-      }
+         System.out.println("decimal.intValue() == 1");
+       }
+      decimal = decimal.subtract(VALUEOFONE);
       binaryRepresentation.add('1');
-    } else {
+      numberOfDecimalPlaces++;
+    }
+
+    // Third case where there is no remainder for the decimal and it has a
+    // finite representation as a 'decimal' in base two
+    else if (decimal.compareTo(VALUEOFZERO) == 0) {
+      if (debugging == true) {
+        System.out.println("decimal.compareTo(VALUEOFZERO) == 0");
+      }
+      System.out.println(binaryRepresentation);
+      System.out.println("Conversion has finite result above");
+      return;
+    }
+
+    // Fourth case where something stupid and werid happens
+    else {
       if (debugging == true) {
         System.out.println("Something weird is happening!");
       }
     }
 
-    // Modify the decimal to pass back into the method, recursively
-    decimal = decimal.subtract(decimal.setScale(0, RoundingMode.DOWN));
-
-    if (count == numberOfFiguresToTrack) {
-      // Print out the contents of our binaryRepresentation
-      System.out.println(binaryRepresentation);
-    }
-
-    // Increment the execution counter
+    // Increment the execution counter by four since we mutiplied by four
     count++;
 
     // Pass the decimal back into the method to run again
@@ -89,6 +109,6 @@ public class Base10DecimalToBinary {
 
   // Main method
   public static void main(String[] args) {
-    Base10DecimalToBinary newConversion = new Base10DecimalToBinary();
+    Base10DecimalToBinary2 newConversion = new Base10DecimalToBinary2();
   }
 }

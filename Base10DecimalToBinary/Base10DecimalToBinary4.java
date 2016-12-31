@@ -1,7 +1,7 @@
 /*
 *  filename: Base10DecimalToBinary4.java
 *  author: Connor Baker
-*  version: 0.1e
+*  version: 0.1f
 *  description: Convert a decimal entered by user (between 0 and 1) into its
 *  binary representation (e.g. 0.625 becomes "0.101"). Allows for arbitrary
 *  precision given that there is enough memory allowed in the stack. The stack
@@ -52,7 +52,7 @@ public class Base10DecimalToBinary4 {
   // Method to initialize the object
   public void initialization() {
     System.out.println("Input the decimal fraction of your choice between 0"
-      + " and 1 (exclusive)");
+    + " and 1 (exclusive)");
     decimal = new BigDecimal(grabber.nextLine());
   }
 
@@ -78,60 +78,60 @@ public class Base10DecimalToBinary4 {
     // truncates the decimal portion for us)
     if (decimal.intValue() == 0) {
       if (debugging == true) {
-         System.out.println("decimal.intValue() == 0");
-       }
+        System.out.println("decimal.intValue() == 0");
+      }
       binaryRepresentation.add('0');
       binaryRepresentation.add('0');
       numberOfDecimalPlaces += 2;
       if (debugging == true) {
-         System.out.println(decimal);
-         System.out.println("0, 0");
-       }
+        System.out.println(decimal);
+        System.out.println("0, 0");
+      }
     }
 
     // Second case where the decimal is greater than one, but less than two
     else if (decimal.intValue() == 1) {
       if (debugging == true) {
-         System.out.println("decimal.intValue() == 1");
-       }
+        System.out.println("decimal.intValue() == 1");
+      }
       decimal = decimal.subtract(VALUEOFONE);
       binaryRepresentation.add('0');
       binaryRepresentation.add('1');
       numberOfDecimalPlaces += 2;
       if (debugging == true) {
-         System.out.println(decimal);
-         System.out.println("0, 1");
-       }
+        System.out.println(decimal);
+        System.out.println("0, 1");
+      }
     }
 
     // Third case where the decimal is greater than two, but less than three
     else if (decimal.intValue() == 2) {
       if (debugging == true) {
-         System.out.println("decimal.intValue() == 2");
-       }
+        System.out.println("decimal.intValue() == 2");
+      }
       decimal = decimal.subtract(VALUEOFTWO);
       binaryRepresentation.add('1');
       binaryRepresentation.add('0');
       numberOfDecimalPlaces += 2;
       if (debugging == true) {
-         System.out.println(decimal);
-         System.out.println("1, 0");
-       }
+        System.out.println(decimal);
+        System.out.println("1, 0");
+      }
     }
 
     // Fourth case where the decimal is greater than three, but less than four
     else if (decimal.intValue() == 3) {
       if (debugging == true) {
-         System.out.println("decimal.intValue() == 3");
-       }
+        System.out.println("decimal.intValue() == 3");
+      }
       decimal = decimal.subtract(VALUEOFTHREE);
       binaryRepresentation.add('1');
       binaryRepresentation.add('1');
       numberOfDecimalPlaces += 2;
       if (debugging == true) {
-         System.out.println(decimal);
-         System.out.println("1, 1");
-       }
+        System.out.println(decimal);
+        System.out.println("1, 1");
+      }
     }
 
     // Sixth case where something stupid and werid happens
@@ -139,6 +139,7 @@ public class Base10DecimalToBinary4 {
       if (debugging == true) {
         System.out.println("Something weird is happening!");
       }
+      return;
     }
 
     // Increment the execution counter by four since we mutiplied by four

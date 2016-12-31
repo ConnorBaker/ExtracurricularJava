@@ -1,0 +1,16 @@
+if in (0,1) add '0000' to binaryRepresentation, subtract (0x2^0)
+if in (1,2) add '0001' to binaryRepresentation, subtract (1x2^0)
+if in (2,3) add '0010' to binaryRepresentation, subtract (1x2^1)
+if in (3,4) add '0011' to binaryRepresentation, subtract (1x2^0 + 1x2^1)
+if in (4,5) add '0100' to binaryRepresentation, subtract (1x2^2)
+if in (5,6) add '0101' to binaryRepresentation, subtract (1x2^0 + 1x2^2)
+if in (6,7) add '0110' to binaryRepresentation, subtract (1x2^1 + 1x2^2)
+if in (7,8) add '0111' to binaryRepresentation, subtract (1x2^0 + 1x2^1 + 1x2^2)
+if in (8,9) add '1000' to binaryRepresentation, subtract 1x2^3
+if in (9,10) add '1001' to binaryRepresentation, subtract 1x2^0 + 1x2^3
+if in (10,11) add '1010' to binaryRepresentation, subtract 1x2^1 + 1x2^3
+if in (11,12) add '1011' to binaryRepresentation, subtract 1x2^0 + 1x2^1 + 1x2^3
+if in (12,13) add '1100' to binaryRepresentation, subtract 1x2^2 + 1x2^3
+if in (13,14) add '1101' to binaryRepresentation, subtract 1x2^0 + 1x2^2 + 1x2^3
+if in (14,15) add '1110' to binaryRepresentation, subtract 1x2^1 + 1x2^2 + 1x2^3
+if in (15,16) add '1111' to binaryRepresentation, subtract 1x2^0 + 1x2^1 + 1x2^2 + 1x2^3

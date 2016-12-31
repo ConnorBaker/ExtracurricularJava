@@ -1,7 +1,7 @@
 /*
 *  filename: Base10DecimalToBinary16.java
 *  author: Connor Baker
-*  version: 0.1a
+*  version: 0.1b
 *  description: Convert a decimal entered by user (between 0 and 1) into its
 *  binary representation (e.g. 0.625 becomes "0.101"). Allows for arbitrary
 *  precision given that there is enough memory allowed in the stack. The stack
@@ -78,7 +78,7 @@ public class Base10DecimalToBinary16 {
   // Method to initialize the object
   public void initialization() {
     System.out.println("Input the decimal fraction of your choice between 0"
-      + " and 1 (exclusive)");
+    + " and 1 (exclusive)");
     decimal = new BigDecimal(grabber.nextLine());
   }
 
@@ -97,7 +97,7 @@ public class Base10DecimalToBinary16 {
 
     // Multiply the decimal by 4 to test for new additions to the binary
     // representation
-    decimal = decimal.multiply(VALUEOFEIGHT);
+    decimal = decimal.multiply(VALUEOFSIXTEEN);
 
     // First case where the decimal is less than one
     // I use intValue here because I beleive it's faster than compareTo (it
@@ -112,8 +112,8 @@ public class Base10DecimalToBinary16 {
       binaryRepresentation.add('0');
       numberOfDecimalPlaces += 4;
       if (debugging == true) {
-       System.out.println(decimal);
-       System.out.println("0, 0, 0, 0");
+        System.out.println(decimal);
+        System.out.println("0, 0, 0, 0");
       }
     }
 
@@ -180,9 +180,9 @@ public class Base10DecimalToBinary16 {
       binaryRepresentation.add('0');
       numberOfDecimalPlaces += 4;
       if (debugging == true) {
-         System.out.println(decimal);
-         System.out.println("0, 1, 0, 0");
-       }
+        System.out.println(decimal);
+        System.out.println("0, 1, 0, 0");
+      }
     }
 
     // Sixth case where the decimal is greater than five, but less than six
@@ -293,7 +293,7 @@ public class Base10DecimalToBinary16 {
       if (debugging == true) {
         System.out.println("decimal.intValue() == 11");
       }
-      decimal = decimal.subtract(VALUEOFSEVEN);
+      decimal = decimal.subtract(VALUEOFELEVEN);
       binaryRepresentation.add('1');
       binaryRepresentation.add('0');
       binaryRepresentation.add('1');
@@ -311,7 +311,7 @@ public class Base10DecimalToBinary16 {
       if (debugging == true) {
         System.out.println("decimal.intValue() == 12");
       }
-      decimal = decimal.subtract(VALUEOFSEVEN);
+      decimal = decimal.subtract(VALUEOFTWELVE);
       binaryRepresentation.add('1');
       binaryRepresentation.add('1');
       binaryRepresentation.add('0');
@@ -329,7 +329,7 @@ public class Base10DecimalToBinary16 {
       if (debugging == true) {
         System.out.println("decimal.intValue() == 13");
       }
-      decimal = decimal.subtract(VALUEOFSEVEN);
+      decimal = decimal.subtract(VALUEOFTHIRTEEN);
       binaryRepresentation.add('1');
       binaryRepresentation.add('1');
       binaryRepresentation.add('0');
@@ -347,7 +347,7 @@ public class Base10DecimalToBinary16 {
       if (debugging == true) {
         System.out.println("decimal.intValue() == 14");
       }
-      decimal = decimal.subtract(VALUEOFSEVEN);
+      decimal = decimal.subtract(VALUEOFFOURTEEN);
       binaryRepresentation.add('1');
       binaryRepresentation.add('1');
       binaryRepresentation.add('1');
@@ -365,7 +365,7 @@ public class Base10DecimalToBinary16 {
       if (debugging == true) {
         System.out.println("decimal.intValue() == 15");
       }
-      decimal = decimal.subtract(VALUEOFSEVEN);
+      decimal = decimal.subtract(VALUEOFFIFTEEN);
       binaryRepresentation.add('1');
       binaryRepresentation.add('1');
       binaryRepresentation.add('1');
@@ -382,6 +382,7 @@ public class Base10DecimalToBinary16 {
       if (debugging == true) {
         System.out.println("Something weird is happening!");
       }
+      return;
     }
 
     // Increment the execution counter by four since we mutiplied by four

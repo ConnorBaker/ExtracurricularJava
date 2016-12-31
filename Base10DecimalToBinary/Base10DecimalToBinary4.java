@@ -1,7 +1,7 @@
 /*
 *  filename: Base10DecimalToBinary4.java
 *  author: Connor Baker
-*  version: 0.1d
+*  version: 0.1e
 *  description: Convert a decimal entered by user (between 0 and 1) into its
 *  binary representation (e.g. 0.625 becomes "0.101"). Allows for arbitrary
 *  precision given that there is enough memory allowed in the stack. The stack
@@ -33,7 +33,6 @@ public class Base10DecimalToBinary4 {
   long numberOfDecimalPlaces=0;
   long numberOfFiguresToTrack;
   BigDecimal decimal;
-  final static BigDecimal VALUEOFZERO = new BigDecimal("0.0");
   final static BigDecimal VALUEOFONE = new BigDecimal("1.0");
   final static BigDecimal VALUEOFTWO = new BigDecimal("2.0");
   final static BigDecimal VALUEOFTHREE = new BigDecimal("3.0");
@@ -134,19 +133,6 @@ public class Base10DecimalToBinary4 {
          System.out.println("1, 1");
        }
     }
-
-    // This condition is never met (due to arithmetic errors associated with
-    // using base 2) and has been commented out
-    // Fifth case where there is no remainder for the decimal and it has a
-    // finite representation as a 'decimal' in base two
-    // else if (decimal.compareTo(VALUEOFZERO) == 0) {
-    //   if (debugging == true) {
-    //     System.out.println("decimal.compareTo(VALUEOFZERO) == 0");
-    //   }
-    //   System.out.println(binaryRepresentation);
-    //   System.out.println("Conversion has finite result above");
-    //   return;
-    // }
 
     // Sixth case where something stupid and werid happens
     else {

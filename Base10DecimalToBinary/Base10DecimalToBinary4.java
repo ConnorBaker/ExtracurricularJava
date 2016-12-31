@@ -1,7 +1,7 @@
 /*
 *  filename: Base10DecimalToBinary4.java
 *  author: Connor Baker
-*  version: 0.1c
+*  version: 0.1d
 *  description: Convert a decimal entered by user (between 0 and 1) into its
 *  binary representation (e.g. 0.625 becomes "0.101"). Allows for arbitrary
 *  precision given that there is enough memory allowed in the stack. The stack
@@ -12,12 +12,12 @@
 *
 *  algorithm (roughly): Take in a decimal in base 10 on (0,1).
 *  Multiply by four. If result is < 1, add two zeroes to binary representation.
-*  If > 1 but < 2, subtract 1x2^0 and add one one to binary representation. If
-*  > 2 but < 3, subtract 1x2^1, add one one and one zero to binary
-*  representation. If > 3 (no need to check for ceiling of < 4 because the
-*  decimal itself must be between 0 and 1 originally and the only way for that
-*  ceiling to be violated would be if it was >= 1), subtract 1x2^0 + 1x2^1, add
-*  two ones to binary representation.
+*  If > 1 but < 2, subtract 1x2^0 and add one zero and one one to binary
+*  representation. If > 2 but < 3, subtract 1x2^1, add one one and one zero to
+*  binary representation. If > 3 (no need to check for ceiling of < 4 because
+*  the decimal itself must be between 0 and 1 originally and the only way for
+*  that ceiling to be violated would be if it was >= 1), subtract 1x2^0 +
+*  1x2^1, add two ones to binary representation.
 *
 *  references: http://cs.furman.edu/digitaldomain/more/ch6/dec_frac_to_bin.htm
 */

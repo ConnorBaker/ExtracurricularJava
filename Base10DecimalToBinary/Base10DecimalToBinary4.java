@@ -1,7 +1,7 @@
 /*
 *  filename: Base10DecimalToBinary4.java
 *  author: Connor Baker
-*  version: 0.1b
+*  version: 0.1c
 *  description: Convert a decimal entered by user (between 0 and 1) into its
 *  binary representation (e.g. 0.625 becomes "0.101"). Allows for arbitrary
 *  precision given that there is enough memory allowed in the stack. The stack
@@ -84,6 +84,10 @@ public class Base10DecimalToBinary4 {
       binaryRepresentation.add('0');
       binaryRepresentation.add('0');
       numberOfDecimalPlaces += 2;
+      if (debugging == true) {
+         System.out.println(decimal);
+         System.out.println("0, 0");
+       }
     }
 
     // Second case where the decimal is greater than one, but less than two
@@ -92,8 +96,13 @@ public class Base10DecimalToBinary4 {
          System.out.println("decimal.intValue() == 1");
        }
       decimal = decimal.subtract(VALUEOFONE);
+      binaryRepresentation.add('0');
       binaryRepresentation.add('1');
-      numberOfDecimalPlaces++;
+      numberOfDecimalPlaces += 2;
+      if (debugging == true) {
+         System.out.println(decimal);
+         System.out.println("0, 1");
+       }
     }
 
     // Third case where the decimal is greater than two, but less than three
@@ -105,6 +114,10 @@ public class Base10DecimalToBinary4 {
       binaryRepresentation.add('1');
       binaryRepresentation.add('0');
       numberOfDecimalPlaces += 2;
+      if (debugging == true) {
+         System.out.println(decimal);
+         System.out.println("1, 0");
+       }
     }
 
     // Fourth case where the decimal is greater than three, but less than four
@@ -116,18 +129,24 @@ public class Base10DecimalToBinary4 {
       binaryRepresentation.add('1');
       binaryRepresentation.add('1');
       numberOfDecimalPlaces += 2;
+      if (debugging == true) {
+         System.out.println(decimal);
+         System.out.println("1, 1");
+       }
     }
 
+    // This condition is never met (due to arithmetic errors associated with
+    // using base 2) and has been commented out
     // Fifth case where there is no remainder for the decimal and it has a
     // finite representation as a 'decimal' in base two
-    else if (decimal.compareTo(VALUEOFZERO) == 0) {
-      if (debugging == true) {
-        System.out.println("decimal.compareTo(VALUEOFZERO) == 0");
-      }
-      System.out.println(binaryRepresentation);
-      System.out.println("Conversion has finite result above");
-      return;
-    }
+    // else if (decimal.compareTo(VALUEOFZERO) == 0) {
+    //   if (debugging == true) {
+    //     System.out.println("decimal.compareTo(VALUEOFZERO) == 0");
+    //   }
+    //   System.out.println(binaryRepresentation);
+    //   System.out.println("Conversion has finite result above");
+    //   return;
+    // }
 
     // Sixth case where something stupid and werid happens
     else {

@@ -136,7 +136,7 @@ public class Base10DecimalToBinary4 {
       }
     }
 
-    // Sixth case where something stupid and werid happens
+    // Fifth case where something stupid and werid happens
     else {
       if (debugging == true) {
         System.out.println("Something weird is happening!");

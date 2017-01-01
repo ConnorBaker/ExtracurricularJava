@@ -41,11 +41,13 @@ public class Base10DecimalToBinary2 {
     System.out.println("Input the decimal fraction of your choice between 0"
     + " and 1 (exclusive)");
     decimal = new BigDecimal(grabber.nextLine());
+    // decimal = new BigDecimal("0.13423");
   }
 
   public void queryForAccuracy() {
     System.out.println("Input the number of figures you want to track");
     numberOfFiguresToTrack = grabber.nextLong();
+    // numberOfFiguresToTrack = 36000;
   }
 
   public void decimalFractionToBinary(BigDecimal decimal) {

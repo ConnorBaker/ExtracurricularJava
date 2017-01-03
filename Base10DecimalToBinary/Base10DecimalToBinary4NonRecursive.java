@@ -69,12 +69,13 @@ public class Base10DecimalToBinary4NonRecursive {
       // representation
       decimal = decimal.multiply(VALUEOFFOUR);
 
+      // Create a temporary value for decimal.intValue() since we call it often
+      int tempInt = decimal.intValue();
+
       // First case where the decimal is less than one
-      // I use intValue here because I beleive it's faster than compareTo (it
-      // truncates the decimal portion for us)
-      if (decimal.intValue() == 0) {
+      if (tempInt == 0) {
         if (debugging == true) {
-          System.out.println("decimal.intValue() == 0");
+          System.out.println("tempInt == 0");
         }
         binaryRepresentation.add('0');
         binaryRepresentation.add('0');
@@ -85,9 +86,9 @@ public class Base10DecimalToBinary4NonRecursive {
       }
 
       // Second case where the decimal is greater than one, but less than two
-      else if (decimal.intValue() == 1) {
+      else if (tempInt == 1) {
         if (debugging == true) {
-          System.out.println("decimal.intValue() == 1");
+          System.out.println("tempInt == 1");
         }
         decimal = decimal.subtract(VALUEOFONE);
         binaryRepresentation.add('0');
@@ -99,9 +100,9 @@ public class Base10DecimalToBinary4NonRecursive {
       }
 
       // Third case where the decimal is greater than two, but less than three
-      else if (decimal.intValue() == 2) {
+      else if (tempInt == 2) {
         if (debugging == true) {
-          System.out.println("decimal.intValue() == 2");
+          System.out.println("tempInt == 2");
         }
         decimal = decimal.subtract(VALUEOFTWO);
         binaryRepresentation.add('1');
@@ -113,9 +114,9 @@ public class Base10DecimalToBinary4NonRecursive {
       }
 
       // Fourth case where the decimal is greater than three, but less than four
-      else if (decimal.intValue() == 3) {
+      else if (tempInt == 3) {
         if (debugging == true) {
-          System.out.println("decimal.intValue() == 3");
+          System.out.println("tempInt == 3");
         }
         decimal = decimal.subtract(VALUEOFTHREE);
         binaryRepresentation.add('1');

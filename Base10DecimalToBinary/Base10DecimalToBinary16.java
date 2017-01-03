@@ -101,12 +101,13 @@ public class Base10DecimalToBinary16 {
     // representation
     decimal = decimal.multiply(VALUEOFSIXTEEN);
 
+    // Create a temporary value for decimal.intValue() since we call it often
+    int tempInt = decimal.intValue();
+
     // First case where the decimal is less than one
-    // I use intValue here because I beleive it's faster than compareTo (it
-    // truncates the decimal portion for us)
-    if (decimal.intValue() == 0) {
+    if (tempInt == 0) {
       if (debugging == true) {
-        System.out.println("decimal.intValue() == 0");
+        System.out.println("tempInt == 0");
       }
       binaryRepresentation.add('0');
       binaryRepresentation.add('0');
@@ -120,9 +121,9 @@ public class Base10DecimalToBinary16 {
     }
 
     // Second case where the decimal is greater than one, but less than two
-    else if (decimal.intValue() == 1) {
+    else if (tempInt == 1) {
       if (debugging == true) {
-        System.out.println("decimal.intValue() == 1");
+        System.out.println("tempInt == 1");
       }
       decimal = decimal.subtract(VALUEOFONE);
       binaryRepresentation.add('0');
@@ -137,9 +138,9 @@ public class Base10DecimalToBinary16 {
     }
 
     // Third case where the decimal is greater than two, but less than three
-    else if (decimal.intValue() == 2) {
+    else if (tempInt == 2) {
       if (debugging == true) {
-        System.out.println("decimal.intValue() == 2");
+        System.out.println("tempInt == 2");
       }
       decimal = decimal.subtract(VALUEOFTWO);
       binaryRepresentation.add('0');
@@ -154,9 +155,9 @@ public class Base10DecimalToBinary16 {
     }
 
     // Fourth case where the decimal is greater than three, but less than four
-    else if (decimal.intValue() == 3) {
+    else if (tempInt == 3) {
       if (debugging == true) {
-        System.out.println("decimal.intValue() == 3");
+        System.out.println("tempInt == 3");
       }
       decimal = decimal.subtract(VALUEOFTHREE);
       binaryRepresentation.add('0');
@@ -171,9 +172,9 @@ public class Base10DecimalToBinary16 {
     }
 
     // Fifth case where the decimal is greater than four, but less than five
-    else if (decimal.intValue() == 4) {
+    else if (tempInt == 4) {
       if (debugging == true) {
-        System.out.println("decimal.intValue() == 4");
+        System.out.println("tempInt == 4");
       }
       decimal = decimal.subtract(VALUEOFFOUR);
       binaryRepresentation.add('0');
@@ -188,9 +189,9 @@ public class Base10DecimalToBinary16 {
     }
 
     // Sixth case where the decimal is greater than five, but less than six
-    else if (decimal.intValue() == 5) {
+    else if (tempInt == 5) {
       if (debugging == true) {
-        System.out.println("decimal.intValue() == 5");
+        System.out.println("tempInt == 5");
       }
       decimal = decimal.subtract(VALUEOFFIVE);
       binaryRepresentation.add('0');
@@ -205,9 +206,9 @@ public class Base10DecimalToBinary16 {
     }
 
     // Seventh case where the decimal is greater than six, but less than seven
-    else if (decimal.intValue() == 6) {
+    else if (tempInt == 6) {
       if (debugging == true) {
-        System.out.println("decimal.intValue() == 6");
+        System.out.println("tempInt == 6");
       }
       decimal = decimal.subtract(VALUEOFSIX);
       binaryRepresentation.add('0');
@@ -222,9 +223,9 @@ public class Base10DecimalToBinary16 {
     }
 
     // Eigth case where the decimal is greater than seven, but less than eight
-    else if (decimal.intValue() == 7) {
+    else if (tempInt == 7) {
       if (debugging == true) {
-        System.out.println("decimal.intValue() == 7");
+        System.out.println("tempInt == 7");
       }
       decimal = decimal.subtract(VALUEOFSEVEN);
       binaryRepresentation.add('0');
@@ -239,9 +240,9 @@ public class Base10DecimalToBinary16 {
     }
 
     // Ninth case where the decimal is greater than eight, but less than nine
-    else if (decimal.intValue() == 8) {
+    else if (tempInt == 8) {
       if (debugging == true) {
-        System.out.println("decimal.intValue() == 8");
+        System.out.println("tempInt == 8");
       }
       decimal = decimal.subtract(VALUEOFEIGHT);
       binaryRepresentation.add('1');
@@ -256,9 +257,9 @@ public class Base10DecimalToBinary16 {
     }
 
     // Tenth case where the decimal is greater than nine, but less than ten
-    else if (decimal.intValue() == 9) {
+    else if (tempInt == 9) {
       if (debugging == true) {
-        System.out.println("decimal.intValue() == 9");
+        System.out.println("tempInt == 9");
       }
       decimal = decimal.subtract(VALUEOFNINE);
       binaryRepresentation.add('1');
@@ -273,9 +274,9 @@ public class Base10DecimalToBinary16 {
     }
 
     // Eleventh case where the decimal is greater than ten, but less than eleven
-    else if (decimal.intValue() == 10) {
+    else if (tempInt == 10) {
       if (debugging == true) {
-        System.out.println("decimal.intValue() == 10");
+        System.out.println("tempInt == 10");
       }
       decimal = decimal.subtract(VALUEOFTEN);
       binaryRepresentation.add('1');
@@ -291,9 +292,9 @@ public class Base10DecimalToBinary16 {
 
     // Twelfth case where the decimal is greater than eleven, but less than
     // twelve
-    else if (decimal.intValue() == 11) {
+    else if (tempInt == 11) {
       if (debugging == true) {
-        System.out.println("decimal.intValue() == 11");
+        System.out.println("tempInt == 11");
       }
       decimal = decimal.subtract(VALUEOFELEVEN);
       binaryRepresentation.add('1');
@@ -309,9 +310,9 @@ public class Base10DecimalToBinary16 {
 
     // Thirteenth case where the decimal is greater than twelve, but less than
     // thirteen
-    else if (decimal.intValue() == 12) {
+    else if (tempInt == 12) {
       if (debugging == true) {
-        System.out.println("decimal.intValue() == 12");
+        System.out.println("tempInt == 12");
       }
       decimal = decimal.subtract(VALUEOFTWELVE);
       binaryRepresentation.add('1');
@@ -327,9 +328,9 @@ public class Base10DecimalToBinary16 {
 
     // Fourteenth case where the decimal is greater than thirteen, but less
     // than fourteen
-    else if (decimal.intValue() == 13) {
+    else if (tempInt == 13) {
       if (debugging == true) {
-        System.out.println("decimal.intValue() == 13");
+        System.out.println("tempInt == 13");
       }
       decimal = decimal.subtract(VALUEOFTHIRTEEN);
       binaryRepresentation.add('1');
@@ -345,9 +346,9 @@ public class Base10DecimalToBinary16 {
 
     // Fifteenth case where the decimal is greater than fourteen, but less than
     // fifteen
-    else if (decimal.intValue() == 14) {
+    else if (tempInt == 14) {
       if (debugging == true) {
-        System.out.println("decimal.intValue() == 14");
+        System.out.println("tempInt == 14");
       }
       decimal = decimal.subtract(VALUEOFFOURTEEN);
       binaryRepresentation.add('1');
@@ -363,9 +364,9 @@ public class Base10DecimalToBinary16 {
 
     // Sixteenth case where the decimal is greater than fifteen, but less than
     // sixteen
-    else if (decimal.intValue() == 15) {
+    else if (tempInt == 15) {
       if (debugging == true) {
-        System.out.println("decimal.intValue() == 15");
+        System.out.println("tempInt == 15");
       }
       decimal = decimal.subtract(VALUEOFFIFTEEN);
       binaryRepresentation.add('1');

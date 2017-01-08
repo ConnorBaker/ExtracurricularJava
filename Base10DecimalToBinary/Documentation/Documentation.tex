@@ -1,7 +1,7 @@
 % Author: Connor Baker
 % Date Created: January 2, 2016
 % Last Edited: January 7, 2016
-% Version: 0.2b
+% Version: 0.2c
 
 \documentclass[12pt]{article}
 % Import Packages
@@ -15,22 +15,23 @@
 \usepackage{caption}
 \usepackage{tocloft}
 \usepackage{minted}
-\usepackage[left=1.25in,right=1.25in,top=1.25in,bottom=1.25in]{geometry}
+\usepackage[left=1.5in,right=1.5in,top=1.5in,bottom=1.5in]{geometry}
 
 \begin{document}
-% Creates a title page with content centered vertically/horizontally
-\null
-\nointerlineskip
-\vfill
-\let \snewpage \newpage
-\let \newpage \relax
-    \title{Decimal Fractions to Binary Fractions\\(Attempt 2)}
-    \author{Connor Baker}
-    \date{January 2017\\Version 0.2b}
+% No page number on the title page
+\pagenumbering{gobble}
+
+% Creates a title page
+  \title{Using Java to Convert Decimal Fractions to Binary Fractions with Arbitrary Accuracy}
+  \author{Connor Baker}
+  \date{January 2017\\Version 0.2c}
 \maketitle
-\let \newpage \snewpage
-\vfill
-\thispagestyle{empty}
+
+% Create the Abstract section
+\begin{center}
+\subsection*{Abstract}
+\end{center}
+This paper briefly discusses some of the challenges faced with converting a decimal fraction into its binary representation, creating a Java implementation to do so, and writing it in such a way that we can have arbitrary precision. Use of the traditional algorithm for converting decimal fractions to binary fractions is derived, as well as several faster algorithms that exploit powers of two.
 
 
 
@@ -48,12 +49,6 @@
 \clearpage
 \pagenumbering{arabic}
 
-% Create the Abstract section
-\begin{center}
-\section{Abstract}
-\end{center}
-This paper briefly pnei
-
 
 
 \newpage % New page
@@ -64,8 +59,34 @@ This paper briefly pnei
 \begin{center}
 \section{A Brief Explanation of the Problem}
 \end{center}
+Given a decimal fraction (that is to say, a fraction in base ten written without the division operator, like $0.5$ instead of $1/2$), how can one convert it to the equivalent binary representation?
 
+\par To begin dissecting this problem, I resolved to first look at how conversion from base ten to base two with whole numbers worked.
 
+\subsection{From Decimal to Binary}
+Given a number $ABCDE$ in any base $\beta$, one can rewrite that number as the sum of each digit multiplied by the base to a power, like so: $A\times\beta^4 + B\times\beta^3 + C\times\beta^2 + D\times\beta^1 + E\times\beta^0$. As an example, given the number $44675_{10}$ (the notation means $44675$ in base ten), we can rewrite it as $4\times10^4 + 4\times10^3 + 6\times10^2 + 7\times10^1 + 5\times10^0$.
+
+\par In terms of changing the base of a number, the goal is to rewriting it as the sum of some numbers multiplied by the desired base to a power. Take for example the number $7_{10}$. We know that we can rewrite it as $7\times10^0$, but how could we express this number in base two? Our goal is to end up with something that looks like $a_1\times2^{n} + a_2\times2^{n-1} + ... + a_b\times2^0$. The question then becomes, how can we find those weights $\{a_1, a_2, ..., a_b\}$ that make the sum seven? The answer is division.
+
+\begin{center}
+\begin{tabular}{c|c|c}
+  \textbf{Value of Quotient} & \textbf{Remainder} & \textbf{Binary Representation} \\
+  7 & 0 & \\
+  3 & 1 & 1 \\
+  1 & 1 & 11 \\
+  0 & 1 & 111 \\
+  0 & 0 & 111
+\end{tabular}
+\end{center}
+
+\par In the table above, we perform the division necessary to calculate the binary representation of seven in base two. Each time we divide the decimal by two and get a remainder of one, we put a one in the rightmost place of our decimal representation. Likewise, if we have a remainder of zero, we append a zero. Once the value of the quotient is zero, we halt computation because we have found the binary representation in full.
+
+\par In the first row, we have the original decimal, a remainder of zero since we have not begun to divide yet, and an empty binary representation. The second row has the whole number portion of the quotient, the remainder, and the beginnings of our binary representation. The third and fourth rows continue filling out binary representation. The fifth row is where we meet the halt condition, which is why the binary representation is unchanged.
+
+\par So know that we know our binary representation is $111_2$, we can say that $7_{10} = 1\times2^2+1\times2^1+1\times^0 = 111_2$.
+
+\subsection{Decimal and Binary Fractions}
+Being able to rewrite whole numbers as the sum of the products of some weights to a power a base begs a question: can we do the same for fractions?
 
 \newpage % New page
 
@@ -75,8 +96,6 @@ This paper briefly pnei
 \begin{center}
 \section{Algorithms}
 \end{center}
-
-\subsection{From Decimal to Binary}
 
 \subsection{Decimal Fraction}
 

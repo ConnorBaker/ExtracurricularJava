@@ -1,0 +1,143 @@
+% Author: Connor Baker
+% Date Created: January 2, 2016
+% Last Edited: January 7, 2016
+% Version: 0.2b
+
+\documentclass[12pt]{article}
+% Import Packages
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{gensymb}
+\usepackage{caption}
+\usepackage{tocloft}
+\usepackage{minted}
+\usepackage[left=1.25in,right=1.25in,top=1.25in,bottom=1.25in]{geometry}
+
+\begin{document}
+% Creates a title page with content centered vertically/horizontally
+\null
+\nointerlineskip
+\vfill
+\let \snewpage \newpage
+\let \newpage \relax
+    \title{Decimal Fractions to Binary Fractions\\(Attempt 2)}
+    \author{Connor Baker}
+    \date{January 2017\\Version 0.2b}
+\maketitle
+\let \newpage \snewpage
+\vfill
+\thispagestyle{empty}
+
+
+
+\newpage % New page
+
+
+
+% Create the table of contents formatted with dotted lines and roman page numbering
+\makeatletter
+\pagenumbering{roman}
+\makeatother
+\tableofcontents
+
+% End the table of contents and reset page numbering to arabic
+\clearpage
+\pagenumbering{arabic}
+
+% Create the Abstract section
+\begin{center}
+\section{Abstract}
+\end{center}
+This paper briefly pnei
+
+
+
+\newpage % New page
+
+
+
+% Create the A Brief Explanation of the Problem} section
+\begin{center}
+\section{A Brief Explanation of the Problem}
+\end{center}
+
+
+
+\newpage % New page
+
+
+
+% Create the A Brief Explanation of the Problem} section
+\begin{center}
+\section{Algorithms}
+\end{center}
+
+\subsection{From Decimal to Binary}
+
+\subsection{Decimal Fraction}
+
+\subsection{Binary Fractions}
+
+\subsection{A Simplistic (if Slow) Approach}
+
+\subsection{Exploiting Powers of Two}
+Times 2 table
+\begin{center}
+\begin{tabular}{c|c|c}
+    \textbf{Value of Product} & \textbf{Append} & \textbf{Subtract from Decimal} \\
+    $(0,1)$   & '0' & $0\times2^0$ \\
+    $[1,2)$   & '1' & $1\times2^0$
+\end{tabular}
+\end{center}
+Times 4 table
+\begin{center}
+\begin{tabular}{c|c|c}
+    \textbf{Value of Product} & \textbf{Append} & \textbf{Subtract from Decimal} \\
+    $(0,1)$   & '00' & $0\times2^1 + 0\times2^0$ \\
+    $[1,2)$   & '01' & $0\times2^1 + 1\times2^0$ \\
+    $[2,3)$   & '10' & $1\times2^1 + 0\times2^0$ \\
+    $[3,4)$   & '11' & $1\times2^1 + 1\times2^0$
+\end{tabular}
+\end{center}
+Times 8 table
+\begin{center}
+\begin{tabular}{c|c|c}
+    \textbf{Value of Product} & \textbf{Append} & \textbf{Subtract from Decimal} \\
+    $(0,1)$   & '000' & $0\times2^2 + 0\times2^1 + 0\times2^0$ \\
+    $[1,2)$   & '001' & $0\times2^2 + 0\times2^1 + 1\times2^0$ \\
+    $[2,3)$   & '010' & $0\times2^2 + 1\times2^1 + 0\times2^0$ \\
+    $[3,4)$   & '011' & $0\times2^2 + 1\times2^1 + 1\times2^0$ \\
+    $[4,5)$   & '100' & $1\times2^2 + 0\times2^1 + 0\times2^0$ \\
+    $[5,6)$   & '101' & $1\times2^2 + 0\times2^1 + 1\times2^0$ \\
+    $[6,7)$   & '110' & $1\times2^2 + 1\times2^1 + 0\times2^0$ \\
+    $[7,8)$   & '111' & $1\times2^2 + 1\times2^1 + 1\times2^0$
+\end{tabular}
+\end{center}
+Times 16 table
+\begin{center}
+\begin{tabular}{c|c|c}
+    \textbf{Value of Product} & \textbf{Append} & \textbf{Subtract from Decimal} \\
+    $(0,1)$   & '0000' & $0\times2^3 + 0\times2^2 + 0\times2^1 + 0\times2^0$ \\
+    $[1,2)$   & '0001' & $0\times2^3 + 0\times2^2 + 0\times2^1 + 1\times2^0$ \\
+    $[2,3)$   & '0010' & $0\times2^3 + 0\times2^2 + 1\times2^1 + 0\times2^0$ \\
+    $[3,4)$   & '0011' & $0\times2^3 + 0\times2^2 + 1\times2^1 + 1\times2^0$ \\
+    $[4,5)$   & '0100' & $0\times2^3 + 1\times2^2 + 0\times2^1 + 0\times2^0$ \\
+    $[5,6)$   & '0101' & $0\times2^3 + 1\times2^2 + 0\times2^1 + 1\times2^0$ \\
+    $[6,7)$   & '0110' & $0\times2^3 + 1\times2^2 + 1\times2^1 + 0\times2^0$ \\
+    $[7,8)$   & '0111' & $0\times2^3 + 1\times2^2 + 1\times2^1 + 1\times2^0$ \\
+    $[8,9)$   & '1000' & $1\times2^3 + 0\times2^2 + 0\times2^1 + 0\times2^0$ \\
+    $[9,10)$  & '1001' & $1\times2^3 + 0\times2^2 + 0\times2^1 + 1\times2^0$ \\
+    $[10,11)$ & '1010' & $1\times2^3 + 0\times2^2 + 1\times2^1 + 0\times2^0$ \\
+    $[11,12)$ & '1011' & $1\times2^3 + 0\times2^2 + 1\times2^1 + 1\times2^0$ \\
+    $[12,13)$ & '1100' & $1\times2^3 + 1\times2^2 + 0\times2^1 + 0\times2^0$ \\
+    $[13,14)$ & '1101' & $1\times2^3 + 1\times2^2 + 0\times2^1 + 1\times2^0$ \\
+    $[14,15)$ & '1110' & $1\times2^3 + 1\times2^2 + 1\times2^1 + 0\times2^0$ \\
+    $[15,16)$ & '1111' & $1\times2^3 + 1\times2^2 + 1\times2^1 + 1\times2^0$
+\end{tabular}
+\end{center}
+
+\end{document}

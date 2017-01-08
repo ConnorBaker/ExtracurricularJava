@@ -15,3 +15,6 @@
 
 *.DS_Store
 ._.gitignore
+*.fdb_latexmk
+
+*.fls

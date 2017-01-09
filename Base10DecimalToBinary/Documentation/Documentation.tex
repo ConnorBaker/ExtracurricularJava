@@ -1,7 +1,7 @@
 % Author: Connor Baker
 % Date Created: January 2, 2016
-% Last Edited: January 7, 2016
-% Version: 0.2c
+% Last Edited: January 8, 2016
+% Version: 0.2d
 
 \documentclass[12pt]{article}
 % Import Packages
@@ -24,7 +24,7 @@
 % Creates a title page
   \title{Using Java to Convert Decimal Fractions to Binary Fractions with Arbitrary Accuracy}
   \author{Connor Baker}
-  \date{January 2017\\Version 0.2c}
+  \date{January 2017\\Version 0.2d}
 \maketitle
 
 % Create the Abstract section
@@ -64,7 +64,7 @@ Given a decimal fraction (that is to say, a fraction in base ten written without
 \par To begin dissecting this problem, I resolved to first look at how conversion from base ten to base two with whole numbers worked.
 
 \subsection{From Decimal to Binary}
-Given a number $ABCDE$ in any base $\beta$, one can rewrite that number as the sum of each digit multiplied by the base to a power, like so: $A\times\beta^4 + B\times\beta^3 + C\times\beta^2 + D\times\beta^1 + E\times\beta^0$. As an example, given the number $44675_{10}$ (the notation means $44675$ in base ten), we can rewrite it as $4\times10^4 + 4\times10^3 + 6\times10^2 + 7\times10^1 + 5\times10^0$.
+Given a number $ABCDE$ in any base $\beta$, one can rewrite that number as the sum of each digit multiplied by the base to a power, like so: $A\times\beta^4 + B\times\beta^3 + C\times\beta^2 + D\times\beta^1 + E\times\beta^0$. This is called exponential form. As an example, given the number $44675_{10}$ (the notation means $44675$ in base ten), we can rewrite it as $4\times10^4 + 4\times10^3 + 6\times10^2 + 7\times10^1 + 5\times10^0$.
 
 \par In terms of changing the base of a number, the goal is to rewriting it as the sum of some numbers multiplied by the desired base to a power. Take for example the number $7_{10}$. We know that we can rewrite it as $7\times10^0$, but how could we express this number in base two? Our goal is to end up with something that looks like $a_1\times2^{n} + a_2\times2^{n-1} + ... + a_b\times2^0$. The question then becomes, how can we find those weights $\{a_1, a_2, ..., a_b\}$ that make the sum seven? The answer is division.
 
@@ -86,7 +86,13 @@ Given a number $ABCDE$ in any base $\beta$, one can rewrite that number as the s
 \par So know that we know our binary representation is $111_2$, we can say that $7_{10} = 1\times2^2+1\times2^1+1\times^0 = 111_2$.
 
 \subsection{Decimal and Binary Fractions}
-Being able to rewrite whole numbers as the sum of the products of some weights to a power a base begs a question: can we do the same for fractions?
+Being able to rewrite whole numbers in exponential form begs a question: can we do the same for fractions? The answer is of course, yes.
+
+\par Given a decimal fraction, like $0.625$, we can use negative exponents to write it in exponential form, like so: $0.625 = 6\times10^{-1}+2\times10^{-2}+5\times10^{-3}$. How can we express $0.625$ as a binary fraction? An intuitive leap to make is that since converting whole numbers to binary involved division, converting fractions might involve multiplication (which happens to be the case).
+
+\par
+
+
 
 \newpage % New page
 
@@ -96,14 +102,7 @@ Being able to rewrite whole numbers as the sum of the products of some weights t
 \begin{center}
 \section{Algorithms}
 \end{center}
-
-\subsection{Decimal Fraction}
-
-\subsection{Binary Fractions}
-
-\subsection{A Simplistic (if Slow) Approach}
-
-\subsection{Exploiting Powers of Two}
+\subsection{A Simple Approach}
 Times 2 table
 \begin{center}
 \begin{tabular}{c|c|c}
@@ -112,6 +111,8 @@ Times 2 table
     $[1,2)$   & '1' & $1\times2^0$
 \end{tabular}
 \end{center}
+
+\subsection{Exploiting Powers of Two}
 Times 4 table
 \begin{center}
 \begin{tabular}{c|c|c}

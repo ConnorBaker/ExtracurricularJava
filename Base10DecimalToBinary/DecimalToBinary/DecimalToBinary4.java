@@ -1,7 +1,7 @@
 /*
-*  filename: DecimalToBinary2.java
+*  filename: DecimalToBinary4.java
 *  author: Connor Baker
-*  version: 0.1a
+*  version: 0.1b
 *  description: Convert a decimal entered by user into its binary
 *  representation. Allows for arbitrary precision given that there is enough
 *  memory allowed in the stack.
@@ -13,7 +13,7 @@ import java.util.Scanner;
 import java.util.Collections;
 import java.util.ArrayList;
 
-public class DecimalToBinary2 {
+public class DecimalToBinary4 {
   // Declare the objects used throughout the program
   final static boolean debugging = false;
   long tempQuotient;
@@ -22,12 +22,14 @@ public class DecimalToBinary2 {
   long numberOfDecimalPlaces = 0;
   BigInteger decimal;
   BigInteger[] temp;
-  final static BigInteger VALUEOFTWO = new BigInteger("4");
-  ArrayList<Character> binaryRepresentation = new ArrayList<>();
+  final static BigInteger VALUEOFFOUR = new BigInteger("4");
+  ArrayList<String> binaryRepresentation = new ArrayList<>();
   Scanner grabber = new Scanner(System.in);
 
+  final static String[] LUT = {"00","01","10","11"};
+
   // Default, no-arg constructor
-  DecimalToBinary2() {
+  DecimalToBinary4() {
     initialization();
     decimalToBinary(decimal);
     printBinaryRepresentation();
@@ -41,7 +43,7 @@ public class DecimalToBinary2 {
 
   public void decimalToBinary(BigInteger decimal) {
     // Find the quotient and remainder
-    temp = decimal.divideAndRemainder(VALUEOFTWO);
+    temp = decimal.divideAndRemainder(VALUEOFFOUR);
 
     // Print useful information if debugging is enabled
     if (debugging) {
@@ -49,44 +51,17 @@ public class DecimalToBinary2 {
       System.out.println("Remainder is "+temp[1]);
     }
 
-    // Cast the remainder to long for easy comparison
-    tempQuotient = temp[0].longValue();
-    tempRemainder = temp[1].longValue();
+    // Cast the remainder to int for easy comparison
+    tempQuotient = temp[0].intValue();
+    tempRemainder = temp[1].intValue();
 
     // Check whether to halt
     if ((tempQuotient == 0) && (tempRemainder == 0)) {
       return;
     }
 
-    // First case where the decimal is even
-    if (tempRemainder == 0) {
-      if (debugging) {
-        System.out.println("tempRemainder == 0");
-      }
-      binaryRepresentation.add('0');
-      if (debugging) {
-        System.out.println(decimal);
-      }
-    }
-
-    // Second case where the decimal is odd
-    else if (tempRemainder == 1) {
-      if (debugging) {
-        System.out.println("tempRemainder == 1");
-      }
-      binaryRepresentation.add('1');
-      if (debugging) {
-        System.out.println(decimal);
-      }
-    }
-
-    // Third case where something stupid and werid happens
-    else {
-      if (debugging) {
-        System.out.println("Something weird is happening!");
-      }
-      return;
-    }
+    // Use the look up table and add the remainder to the binaryRepresentation
+    binaryRepresentation.add(LUT[(int)tempRemainder]);
 
     // Increment the execution counter by four since we mutiplied by four
     count++;
@@ -109,6 +84,6 @@ public class DecimalToBinary2 {
 
   // Main method
   public static void main(String[] args) {
-    DecimalToBinary2 newConversion = new DecimalToBinary2();
+    DecimalToBinary4 newConversion = new DecimalToBinary4();
   }
 }

@@ -1,7 +1,7 @@
 % Author: Connor Baker
 % Date Created: January 12, 2016
 % Last Edited: January 16, 2016
-% Version: 0.2c
+% Version: 0.2d
 
 % Set document type
 \documentclass[12pt]{article}
@@ -31,14 +31,14 @@
 \let \newpage \relax
 \title{Quickly Converting Decimal to Binary}
 \author{Connor Baker}
-\date{January 2017\\Version 0.2c}
+\date{January 2017\\Version 0.2d}
 \maketitle
 
 % Create the Abstract section
 \begin{center}
   \subsection*{Abstract}
 \end{center}
-This paper briefly discusses ways to convert decimal numbers to their binary representation using several fast algorithms which exploit powers of two as a means of performing less arithmetic operations, with the caveat of using a look up table.
+This paper briefly discusses ways to convert decimal numbers to their binary representation using several fast algorithms which exploit powers of two as a means of performing less arithmetic operations, with the caveat of using a look up table (LUT).
 
 % End centering page contents vertically and horizontally
 \let \newpage \snewpage
@@ -70,11 +70,11 @@ This paper briefly discusses ways to convert decimal numbers to their binary rep
 \begin{center}
   \section{From Decimal to Binary}
 \end{center}
-Given a number ABCDE in any base $\beta$, one can rewrite that number in what is called exponential form: that is, the sum of each digit multiplied by the base to a power. For our example ABCDE$_{\beta}$ (the notation means a number ABCDE in base $\beta$), we would write it as follows: A$\times\beta^4 +$ B$\times\beta^3 + $C$\times\beta^2 $D$\times\beta^1 + $E$\times\beta^0$. As an example, given the number $44675_{10}$, we can rewrite it as $4\times10^4 + 4\times10^3 + 6\times10^2 + 7\times10^1 + 5\times10^0$.
+Given a number ABCDE in any base $\beta$, one can rewrite that number in what is called exponential form: that is, the sum of each digit multiplied by the base raised to a power. For our example ABCDE$_{\beta}$ (the notation means a number ABCDE in base $\beta$), we would write it as follows: A$\times\beta^4 +$ B$\times\beta^3 + $C$\times\beta^2 $D$\times\beta^1 + $E$\times\beta^0$. As an example, given the number $44675_{10}$, we can rewrite it as $4\times10^4 + 4\times10^3 + 6\times10^2 + 7\times10^1 + 5\times10^0$.
 
-\par In terms of changing the base of a number, the goal is to rewrite it as the sum of some numbers multiplied by the desired base to a power. Take for example the number $7_{10}$. We know that we can rewrite it as $7\times10^0$, but how could we express this number in base two? Our goal is to end up with something that looks like $a_1\times2^{n} + a_2\times2^{n-1} + ... + a_b\times2^0$. The question then becomes, how can we find those weights $\{a_1, a_2, ..., a_b\}$ that make the sum seven? The answer is division.
+\par In terms of changing the base of a number, the goal is to rewrite it as the sum of several numbers multiplied by the desired base raised to a power. Take for example the number $7_{10}$. We know that we can rewrite it as $7\times10^0$, but how could we express this number in base two? Our goal is to end up with something that looks like $a_1\times2^{n} + a_2\times2^{n-1} + ... + a_b\times2^0$. The question then becomes, how can we find the set of weights $\{a_1, a_2, ..., a_b\}$ that make the sum seven? The answer is division.
 
-\par In the table below, we perform the division necessary to calculate the binary representation of seven in base two. Each time we divide the decimal by two and get a remainder of one, we put a one in the rightmost place of our decimal representation. Likewise, if we have a remainder of zero, we append a zero. Once the value of the quotient is zero, we halt computation because we have found the binary representation in full.
+\par In the table below, we perform the division necessary to calculate the binary representation of seven in base two. Each time we divide the decimal by two and get a remainder of one, we put a one in the leftmost place of our  representation. Likewise, if we have a remainder of zero, we append a zero to the front instead. Once the value of the quotient is zero, we halt computation because we have found the binary representation in full (and even if we didn't, we would only be appending leading zeros which have no value).
 
 \begin{center}
   \begin{tabular}{c|c|c|c}
@@ -104,7 +104,7 @@ Given a number ABCDE in any base $\beta$, one can rewrite that number in what is
 \subsection{A Simple Approach}
 This is the algorithm we used in Section 1 for converting $7_{10}$ to binary.  To convert a decimal number to binary, we divide each resultant quotient by two repeatedly until we meet the halt condition (zero as a quotient), and then take the remainders at each step in reverse.
 
-\par In terms of an analog to computer science, we can think of keeping track of the remainders as adding each new one to the top of a stack, and at the end, pulling from the top of the stack (which reads all entries in reverse). This means that the remainder of the last division operation is going to be the most significant bit in the binary representation.
+\par In terms of an analog to computer science, we can think of keeping track of the remainders as adding each new one to the top of a stack, and once the halt condition is met, pulling from the top of the stack (which reads all entries in reverse). This means that the remainder of the last division operation is going to be the most significant bit in the binary representation.
 
 \begin{center}
   \begin{tabular}{c|c}

@@ -1,12 +1,12 @@
 /*
 *  Filename: RemoveForbiddenStrings.java
 *  Author: Connor Baker
-*  Version: 0.1a
+*  Version: 0.1b
 *  Date created: February 23, 2017
 *  Last updated: February 23, 2017
 *
 *  Description: Take input from a user (forbidden words) and calculate all
-*               the strings in binary that are allowed given the inputted
+*               the strings in that base that are allowed given the inputted
 *               forbidden words.
 */
 
@@ -19,6 +19,7 @@ public class RemoveForbiddenStrings {
   static String[][] arrayOfNumbers;
   static String[] forbiddenWords;
   static Scanner grabber = new Scanner(System.in);
+  static int baseToUse;
   static int placesToTrack;
   static int numberOfAllowedStrings = 0;
   static int numberOfForbiddenStrings = 0;
@@ -32,13 +33,15 @@ public class RemoveForbiddenStrings {
     +"*  Last updated: February 23, 2017\n"
     +"*\n"
     +"*  Description: Take input from a user (forbidden words) and calculate all\n"
-    +"*               the strings in binary that are allowed given the inputted\n"
+    +"*               the strings in that base that are allowed given the inputted\n"
     +"*               forbidden words.\n"
     +"*/\n");
   }
 
   public static void promptUser() {
-    System.out.println("Input number of bits to track:");
+    System.out.println("Input whole number base to use:");
+    baseToUse = grabber.nextInt();
+    System.out.println("Input number of places to track:");
     placesToTrack = grabber.nextInt();
     grabber.nextLine();
     System.out.println("Input forbidden words seperated by commas");
@@ -48,12 +51,12 @@ public class RemoveForbiddenStrings {
   }
 
   public static void fillArray() {
-    arrayOfNumbers = new String[(int)Math.pow(2, placesToTrack)][2];
+    arrayOfNumbers = new String[(int)Math.pow(baseToUse, placesToTrack)][2];
     for (int i = 0; i < arrayOfNumbers.length; i++) {
       // Fill the array with leading zeros so we meet the requirement for
       // number of places to track and so that we can find forbidden words
       arrayOfNumbers[i][0] = String.format("%0"+placesToTrack+"d", new
-                             BigInteger(Integer.toBinaryString(i)));
+                             BigInteger(Integer.toString(i, baseToUse)));
     }
   }
 
@@ -99,7 +102,7 @@ public class RemoveForbiddenStrings {
     removeForbiddenStrings();
     printAllowedStrings();
     printForbiddenStrings();
-    System.out.println("Number of total strings: "+(int)Math.pow(2, placesToTrack));
+    System.out.println("Number of total strings: "+(int)Math.pow(baseToUse, placesToTrack));
     System.out.println("Number of allowed strings: "+numberOfAllowedStrings);
     System.out.println("Number of forbidden strings: "+numberOfForbiddenStrings);
   }

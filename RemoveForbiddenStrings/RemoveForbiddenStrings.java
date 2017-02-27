@@ -1,9 +1,9 @@
 /*
 *  Filename: RemoveForbiddenStrings.java
 *  Author: Connor Baker
-*  Version: 0.1b
+*  Version: 0.2a
 *  Date created: February 23, 2017
-*  Last updated: February 23, 2017
+*  Last updated: February 27, 2017
 *
 *  Description: Take input from a user (forbidden words) and calculate all
 *               the strings in that base that are allowed given the inputted
@@ -28,9 +28,9 @@ public class RemoveForbiddenStrings {
     System.out.println("/*\n"
     +"*  Filename: RemoveForbiddenStrings.java\n"
     +"*  Author: Connor Baker\n"
-    +"*  Version: 0.1a\n"
+    +"*  Version: 0.2a\n"
     +"*  Date created: February 23, 2017\n"
-    +"*  Last updated: February 23, 2017\n"
+    +"*  Last updated: February 27, 2017\n"
     +"*\n"
     +"*  Description: Take input from a user (forbidden words) and calculate all\n"
     +"*               the strings in that base that are allowed given the inputted\n"
@@ -64,10 +64,11 @@ public class RemoveForbiddenStrings {
     for (int i = 0; i < arrayOfNumbers.length; i++) {
       for (int j = 0; j < forbiddenWords.length; j++) {
         if (arrayOfNumbers[i][0].contains(forbiddenWords[j])) {
-          arrayOfNumbers[i][1] = "T"; // Mark the string as having a forbidden word
-          break;
+          arrayOfNumbers[i][1] = "Forbidden"; // Mark the string as having a forbidden word
+          numberOfForbiddenStrings++;
         } else {
-          arrayOfNumbers[i][1] = "F"; // Mark the string as not having a forbidden word
+          arrayOfNumbers[i][1] = "Allowed"; // Mark the string as not having a forbidden word
+          numberOfAllowedStrings++;
         }
       }
     }
@@ -76,9 +77,7 @@ public class RemoveForbiddenStrings {
   public static void printAllowedStrings() {
     System.out.println("All allowed strings are:");
     for (int i = 0; i < arrayOfNumbers.length; i++) {
-      if (arrayOfNumbers[i][1].equals("T")) {
-        numberOfAllowedStrings++;
-      } else {
+      if (arrayOfNumbers[i][1].equals("Allowed")) {
         System.out.println(arrayOfNumbers[i][0]);
       }
     }
@@ -87,9 +86,7 @@ public class RemoveForbiddenStrings {
   public static void printForbiddenStrings() {
     System.out.println("All forbidden strings are:");
     for (int i = 0; i < arrayOfNumbers.length; i++) {
-      if (arrayOfNumbers[i][1].equals("F")) {
-        numberOfForbiddenStrings++;
-      } else {
+      if (arrayOfNumbers[i][1].equals("Forbidden")) {
         System.out.println(arrayOfNumbers[i][0]);
       }
     }

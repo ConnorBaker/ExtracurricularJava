@@ -1,7 +1,7 @@
 /*
 *  Filename: DetectForbiddenWords.java
 *  Author: Connor Baker
-*  Version: 0.2b
+*  Version: 0.2c
 *  Date created: March 3, 2017
 *  Last updated: March 6, 2017
 *
@@ -37,7 +37,7 @@ public class DetectForbiddenWords {
     System.out.println("/*"
     +"\n*  Filename: DetectForbiddenWords.java"
     +"\n*  Author: Connor Baker"
-    +"\n*  Version: 0.2b"
+    +"\n*  Version: 0.2c"
     +"\n*  Date created: March 3, 2017"
     +"\n*  Last updated: March 6, 2017"
     +"\n*"
@@ -51,7 +51,7 @@ public class DetectForbiddenWords {
     System.out.println("Input whole number base to use:");
     baseToUse = grabber.nextInt();
     grabber.nextLine(); // Ready for input again
-    System.out.println("Input allowed string");
+    System.out.println("Input allowed word");
     allowedWord = grabber.nextLine();
     System.out.println("Print output to a file? (Y/N)");
     printToFile = ((grabber.nextLine()).toLowerCase()).equals("y");
@@ -110,7 +110,7 @@ public class DetectForbiddenWords {
 
   public static void printToConsole() {
     // Print allowed subwords to file
-    System.out.println("Allowed strings include:");
+    System.out.println("Allowed subwords include:");
     for (int i = 0; i < allSubwords.length; i++) {
       if (allSubwords[i][1].equals("Allowed")) {
         System.out.println(allSubwords[i][2]);
@@ -118,7 +118,7 @@ public class DetectForbiddenWords {
     }
 
     // Print forbidden subwords to file
-    System.out.println("Forbidden strings include:");
+    System.out.println("Forbidden subwords include:");
     for (int i = 0; i < allSubwords.length; i++) {
       if (allSubwords[i][1].equals("Forbidden")) {
         System.out.println(allSubwords[i][2]);
@@ -126,9 +126,9 @@ public class DetectForbiddenWords {
     }
 
     // Print info
-    System.out.println("Number of total strings: "+allowedWord.length());
-    System.out.println("Number of allowed strings: "+numberOfAllowedSubwords);
-    System.out.println("Number of forbidden strings: "+numberOfForbiddenSubwords);
+    System.out.println("Number of total subwords: "+allowedWord.length());
+    System.out.println("Number of allowed subwords: "+numberOfAllowedSubwords);
+    System.out.println("Number of forbidden subwords: "+numberOfForbiddenSubwords);
   }
 
   public static void printToFile() throws IOException {
@@ -141,7 +141,7 @@ public class DetectForbiddenWords {
     tempPW.println("/*"
     +"\n*  Filename: DetectForbiddenWords.java"
     +"\n*  Author: Connor Baker"
-    +"\n*  Version: 0.2b"
+    +"\n*  Version: 0.2c"
     +"\n*  Date created: March 3, 2017"
     +"\n*  Last updated: March 6, 2017"
     +"\n*"
@@ -153,7 +153,7 @@ public class DetectForbiddenWords {
     // Copy of use input
     tempPW.println("Input whole number base to use:");
     tempPW.println(baseToUse);
-    tempPW.println("Input allowed string");
+    tempPW.println("Input allowed word");
     tempPW.println(allowedWord);
     tempPW.println("Print output to a file? (Y/N)");
     tempPW.println(printToFile);
@@ -161,7 +161,7 @@ public class DetectForbiddenWords {
     tempPW.println(filename);
 
     // Print allowed subwords to file
-    tempPW.println("Allowed strings include:");
+    tempPW.println("Allowed subwords include:");
     for (int i = 0; i < allSubwords.length; i++) {
       if (allSubwords[i][1].equals("Allowed")) {
         tempPW.println(allSubwords[i][2]);
@@ -169,7 +169,7 @@ public class DetectForbiddenWords {
     }
 
     // Print forbidden subwords to file
-    tempPW.println("Forbidden strings include:");
+    tempPW.println("Forbidden subwords include:");
     for (int i = 0; i < allSubwords.length; i++) {
       if (allSubwords[i][1].equals("Forbidden")) {
         tempPW.println(allSubwords[i][2]);
@@ -177,9 +177,9 @@ public class DetectForbiddenWords {
     }
 
     // Print info
-    tempPW.println("Number of total strings: "+allowedWord.length());
-    tempPW.println("Number of allowed strings: "+numberOfAllowedSubwords);
-    tempPW.println("Number of forbidden strings: "+numberOfForbiddenSubwords);
+    tempPW.println("Number of total subwords: "+allowedWord.length());
+    tempPW.println("Number of allowed subwords: "+numberOfAllowedSubwords);
+    tempPW.println("Number of forbidden subwords: "+numberOfForbiddenSubwords);
 
     // Close PrintWriter
     tempPW.flush();

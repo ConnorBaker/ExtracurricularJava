@@ -1,7 +1,7 @@
 /*
 *  Filename: ProgramIO.java
 *  Author: Connor Baker
-*  Version: 0.1a
+*  Version: 0.1b
 *  Date created: March 13, 2017
 *  Last updated: March 13, 2017
 */
@@ -23,7 +23,8 @@ import java.io.IOException;
 
 public class ProgramIO {
   public static void printDescription() {
-    System.out.println("/*");
+    System.out.println("This program takes as input a whole number base [2,10], an allowed word in that base, and calculates forbidden subwords and words in that base."
+    +"\nFor larger bases, it is recommended to use the option to export to a file. Please note that it will be placed in the directory above where the source code is compiled and run.");
   }
 
 
@@ -81,7 +82,8 @@ public class ProgramIO {
     PrintWriter tempPW = new PrintWriter(tempBW);
 
     // Print Description
-    tempPW.println("/*");
+    tempPW.println("This program takes as input a whole number base [2,10], an allowed word in that base, and calculates forbidden subwords and words in that base."
+    +"\nFor larger bases, it is recommended to use the option to export to a file. Please note that it will be placed in the directory above where the source code is compiled and run.");
 
     // Copy of use input
     tempPW.println("Input whole number base to use:");

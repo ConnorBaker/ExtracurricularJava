@@ -7,6 +7,9 @@ For larger bases, it is recommended to use the option to export to a file. Pleas
 # Compiling from source
 Put all of the files in a directory title "findAndRemoveForbiddenWords".
 Then:
+
   javac findAndRemoveForbiddenWords/*.java
+
   java -cp . findAndRemoveForbiddenWords.Main
+
 which will compile and then run the program. You may have to change the file separator depending on your operating system. The above should work for Unix/Linux systems.

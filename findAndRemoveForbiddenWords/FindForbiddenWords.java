@@ -1,9 +1,9 @@
 /*
 *  Filename: FindForbiddenWords.java
 *  Author: Connor Baker
-*  Version: 0.1a
+*  Version: 0.1b
 *  Date created: March 13, 2017
-*  Last updated: March 13, 2017
+*  Last updated: March 14, 2017
 */
 
 
@@ -14,15 +14,13 @@ package findAndRemoveForbiddenWords;
 
 
 // Declare our imports
-import java.util.Arrays;
-
 
 
 public class FindForbiddenWords {
-  static String[][] allSubwords;
-  static String[] forbiddenSubwords;
-  static int numberOfAllowedSubwords = 0;
-  static int numberOfForbiddenSubwords = 0;
+  static String[][] allSubwords = null;
+  static String[] forbiddenSubwords = null;
+  static int numberOfAllowedSubwords;
+  static int numberOfForbiddenSubwords;
 
 
 
@@ -59,12 +57,12 @@ public class FindForbiddenWords {
       if (allSubwords[i][0].equals(maxValueStringOfBase(i))) { // String is equal to string of maximum allowed number in base
         allSubwords[i][1] = "Allowed";
         // Store the allowed or forbidden string in the second element
-        allSubwords[i][2] =  new String(Long.toString(1 + Long.parseLong(allSubwords[i][0], PromptUser.baseToUse), PromptUser.baseToUse));
+        allSubwords[i][2] =  new String(Long.toString(1L + Long.parseLong(allSubwords[i][0], PromptUser.baseToUse), PromptUser.baseToUse));
         numberOfAllowedSubwords++;
       } else {
         allSubwords[i][1] = "Forbidden";
         // Store the allowed or forbidden string in the second element
-        allSubwords[i][2] =  new String(Long.toString(1 + Long.parseLong(allSubwords[i][0], PromptUser.baseToUse), PromptUser.baseToUse));
+        allSubwords[i][2] =  new String(Long.toString(1L + Long.parseLong(allSubwords[i][0], PromptUser.baseToUse), PromptUser.baseToUse));
         numberOfForbiddenSubwords++;
       }
     }
@@ -78,7 +76,7 @@ public class FindForbiddenWords {
     // Fill in the array of sub words
     int index = 0;
     for (int i = 0; i < allSubwords.length; i++) {
-      if (allSubwords[i][1].equals("Forbidden")) {
+      if ("Forbidden".equals(allSubwords[i][1])) {
         forbiddenSubwords[index] = allSubwords[i][2]; // copies the forbidden subword
         index++;
       }

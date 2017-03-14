@@ -1,9 +1,9 @@
 /*
 *  Filename: ProgramIO.java
 *  Author: Connor Baker
-*  Version: 0.1b
+*  Version: 0.1c
 *  Date created: March 13, 2017
-*  Last updated: March 13, 2017
+*  Last updated: March 14, 2017
 */
 
 
@@ -14,10 +14,11 @@ package findAndRemoveForbiddenWords;
 
 
 // Declare our imports
-import java.io.FileWriter;
+
 import java.io.BufferedWriter;
-import java.io.PrintWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 
 
@@ -33,7 +34,7 @@ public class ProgramIO {
     // Print allowed subwords to console
     System.out.println("Allowed subwords include:");
     for (int i = 0; i < FindForbiddenWords.allSubwords.length; i++) {
-      if (FindForbiddenWords.allSubwords[i][1].equals("Allowed")) {
+      if ("Allowed".equals(FindForbiddenWords.allSubwords[i][1])) {
         System.out.println(FindForbiddenWords.allSubwords[i][2]);
       }
     }
@@ -41,7 +42,7 @@ public class ProgramIO {
     // Print forbidden subwords to console
     System.out.println("Forbidden subwords include:");
     for (int i = 0; i < FindForbiddenWords.allSubwords.length; i++) {
-      if (FindForbiddenWords.allSubwords[i][1].equals("Forbidden")) {
+      if ("Forbidden".equals(FindForbiddenWords.allSubwords[i][1])) {
         System.out.println(FindForbiddenWords.allSubwords[i][2]);
       }
     }
@@ -54,7 +55,7 @@ public class ProgramIO {
     // Print allowed words to console
     System.out.println("All allowed words are:");
     for (int i = 0; i < RemoveForbiddenWords.allWords.length; i++) {
-      if (RemoveForbiddenWords.allWords[i][1].equals("Allowed")) {
+      if ("Allowed".equals(RemoveForbiddenWords.allWords[i][1])) {
         System.out.println(RemoveForbiddenWords.allWords[i][0]);
       }
     }
@@ -62,7 +63,7 @@ public class ProgramIO {
     // Print forbidden words to console
     System.out.println("All forbidden words are:");
     for (int i = 0; i < RemoveForbiddenWords.allWords.length; i++) {
-      if (RemoveForbiddenWords.allWords[i][1].equals("Forbidden")) {
+      if ("Forbidden".equals(RemoveForbiddenWords.allWords[i][1])) {
         System.out.println(RemoveForbiddenWords.allWords[i][0]);
       }
     }
@@ -77,9 +78,9 @@ public class ProgramIO {
 
   public static void printToFile() throws IOException {
     // Initialize our objects used for writing to file
-    FileWriter tempfile = new FileWriter(PromptUser.filename);
-    BufferedWriter tempBW = new BufferedWriter(tempfile);
-    PrintWriter tempPW = new PrintWriter(tempBW);
+    final FileWriter tempfile = new FileWriter(PromptUser.filename);
+    final BufferedWriter tempBW = new BufferedWriter(tempfile);
+    final PrintWriter tempPW = new PrintWriter(tempBW);
 
     // Print Description
     tempPW.println("This program takes as input a whole number base [2,10], an allowed word in that base, and calculates forbidden subwords and words in that base."
@@ -98,7 +99,7 @@ public class ProgramIO {
     // Print allowed subwords to console
     tempPW.println("Allowed subwords include:");
     for (int i = 0; i < FindForbiddenWords.allSubwords.length; i++) {
-      if (FindForbiddenWords.allSubwords[i][1].equals("Allowed")) {
+      if ("Allowed".equals(FindForbiddenWords.allSubwords[i][1])) {
         tempPW.println(FindForbiddenWords.allSubwords[i][2]);
       }
     }
@@ -106,7 +107,7 @@ public class ProgramIO {
     // Print forbidden subwords to console
     tempPW.println("Forbidden subwords include:");
     for (int i = 0; i < FindForbiddenWords.allSubwords.length; i++) {
-      if (FindForbiddenWords.allSubwords[i][1].equals("Forbidden")) {
+      if ("Forbidden".equals(FindForbiddenWords.allSubwords[i][1])) {
         tempPW.println(FindForbiddenWords.allSubwords[i][2]);
       }
     }
@@ -119,7 +120,7 @@ public class ProgramIO {
     // Print allowed words to console
     tempPW.println("All allowed words are:");
     for (int i = 0; i < RemoveForbiddenWords.allWords.length; i++) {
-      if (RemoveForbiddenWords.allWords[i][1].equals("Allowed")) {
+      if ("Allowed".equals(RemoveForbiddenWords.allWords[i][1])) {
         tempPW.println(RemoveForbiddenWords.allWords[i][0]);
       }
     }
@@ -127,7 +128,7 @@ public class ProgramIO {
     // Print forbidden words to console
     tempPW.println("All forbidden words are:");
     for (int i = 0; i < RemoveForbiddenWords.allWords.length; i++) {
-      if (RemoveForbiddenWords.allWords[i][1].equals("Forbidden")) {
+      if ("Forbidden".equals(RemoveForbiddenWords.allWords[i][1])) {
         tempPW.println(RemoveForbiddenWords.allWords[i][0]);
       }
     }

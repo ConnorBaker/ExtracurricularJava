@@ -1,9 +1,9 @@
 /*
 *  Filename: Main.java
 *  Author: Connor Baker
-*  Version: 0.1a
-*  Date created: March 12, 2017
-*  Last updated: March 13, 2017
+*  Version: 0.1b
+*  Date created: March 13, 2017
+*  Last updated: March 14, 2017
 */
 
 

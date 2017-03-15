@@ -1,13 +1,14 @@
 /*
 *  Filename: OrbitOfNumber.java
 *  Author: Connor Baker
-*  Version: 0.1b
+*  Version: 0.1c
 *  Date created: March 14, 2017
 *  Last updated: March 15, 2017
 *
 *  Description: Calculate the orbit of a number in a given base, using the
 *               formula y = ((base)*(number))(mod 1). The orbit of a number is
-*               the non-terminating fractional representation. An example of *               the orbit of one in base ten is 0.999999...
+*               the non-terminating fractional representation. An example of
+*               the orbit of one in base ten is 0.999999...
 *
 *  Todo: Get the program to work well for bases larger than 1.9 repeating.
 */

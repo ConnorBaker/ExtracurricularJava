@@ -1,7 +1,7 @@
 /*
 *  Filename: OrbitOfNumber.java
 *  Author: Connor Baker
-*  Version: 0.1d
+*  Version: 0.1e
 *  Date created: March 14, 2017
 *  Last updated: March 15, 2017
 *
@@ -11,8 +11,6 @@
 *               the orbit of one in base ten is 0.999999...
 *
 *  Todo: Get the program to work well for bases larger than 1.9 repeating.
-*
-*  Todo: Get the program to print out the error rather than accuracy.
 */
 
 
@@ -45,7 +43,7 @@ class OrbitOfNumber {
     System.out.println("/*"
     +"\n*  Filename: OrbitOfNumber.java"
     +"\n*  Author: Connor Baker"
-    +"\n*  Version: 0.1b"
+    +"\n*  Version: 0.1e"
     +"\n*  Date created: March 14, 2017"
     +"\n*  Last updated: March 15, 2017"
     +"\n*"
@@ -213,39 +211,27 @@ class OrbitOfNumber {
 
 
 
+  // Method to calculate the error of our orbit vs the actual number
   private static void calculateError() {
+    // Initialize variables to be used in computing the error
     BigDecimal calculatedValue = new BigDecimal("0.0");
     BigDecimal error = new BigDecimal("0.0");
     System.out.println("\nCalculating Accuracy...");
+
+    // Compute the total of our orbit
     for (int i = 0; i < maxIterations; i++) {
       if (ORBIT_VALUES.get(i) == '1') {
-        calculatedValue = calculatedValue.add(new BigDecimal("1.0")).divide(base.pow(i+1), maxIterations, RoundingMode.HALF_UP);
-        error = (number.subtract(calculatedValue)).abs();
-        error = error.divide(number, maxIterations, RoundingMode.HALF_UP);
-        error = error.multiply(new BigDecimal("100.0"));
-
-          if (i%5 == 0) {
-          try {
-            String progress = "\rComputed Error: "+error.setScale(maxIterations, RoundingMode.HALF_UP)+"%";
-            System.out.write(progress.getBytes());
-          } catch(IOException e) {
-            System.out.println("Gosh darned IOException.");
-          }
-        }
-      } else {
-        // Do nothing
+        calculatedValue = calculatedValue.add(new BigDecimal("1.0")).divide(base.pow(i+1), maxIterations, RoundingMode.HALF_UP); // round to the accuracy provided by the user
       }
     }
-    try {
-      String progress = "\rComputed Error: "+error.setScale(30, RoundingMode.HALF_UP)+"%    ";
-      System.out.write(progress.getBytes());
-      System.out.println("\nCalculation Complete.");
-    } catch(IOException e) {
-      System.out.println("Gosh darned IOException.");
-    }
+
+      // Compute the actual error
+      error = (((calculatedValue).abs()).divide(number, maxIterations, RoundingMode.HALF_UP)).multiply(new BigDecimal("100.0"));
+
+      // Print the error
+      System.out.println("Computed Error: "+error.setScale(maxIterations, RoundingMode.HALF_UP)+"%    ");
+      System.out.println("Calculation Complete.");
   }
-
-
 
 
 

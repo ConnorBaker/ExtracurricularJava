@@ -1,7 +1,7 @@
 /*
 *  Filename: OrbitOfNumber.java
 *  Author: Connor Baker
-*  Version: 0.1c
+*  Version: 0.1d
 *  Date created: March 14, 2017
 *  Last updated: March 15, 2017
 *
@@ -11,6 +11,8 @@
 *               the orbit of one in base ten is 0.999999...
 *
 *  Todo: Get the program to work well for bases larger than 1.9 repeating.
+*
+*  Todo: Get the program to print out the error rather than accuracy.
 */
 
 
@@ -126,8 +128,8 @@ class OrbitOfNumber {
       } else if ((100 <= maxIterations) && (maxIterations < 1000)) {
         if (i%(maxIterations/100) == 0) {
           try {
-            String progress = "\rCaclulation Progress: "
-                +String.format("%.0f", percentDone)+"%";
+            String progress = "\rCalculation Progress: "
+                +String.format("%.0f", percentDone)+"%    ";
             System.out.write(progress.getBytes());
             percentDone++;
           } catch(IOException e) {
@@ -137,8 +139,8 @@ class OrbitOfNumber {
       } else if ((1000 <= maxIterations) && (maxIterations < 100000)) {
         if (i%(maxIterations/1000) == 0) {
           try {
-            String progress = "\rCaclulation Progress: "
-                +String.format("%.1f", percentDone)+"%";
+            String progress = "\rCalculation Progress: "
+                +String.format("%.1f", percentDone)+"%    ";
             System.out.write(progress.getBytes());
             percentDone += 0.1;
           } catch(IOException e) {
@@ -148,8 +150,8 @@ class OrbitOfNumber {
       } else if ((100000 <= maxIterations) && (maxIterations < 1000000)) {
         if (i%(maxIterations/100000) == 0) {
           try {
-            String progress = "\rCaclulation Progress: "
-                +String.format("%.2f", percentDone)+"%";
+            String progress = "\rCalculation Progress: "
+                +String.format("%.2f", percentDone)+"%    ";
             System.out.write(progress.getBytes());
             percentDone += 0.001;
           } catch(IOException e) {
@@ -159,8 +161,8 @@ class OrbitOfNumber {
       } else {
         if (i%(maxIterations/1000000) == 0) {
           try {
-            String progress = "\rCaclulation Progress: "
-                +String.format("%.3f", percentDone)+"%";
+            String progress = "\rCalculation Progress: "
+                +String.format("%.3f", percentDone)+"%    ";
             System.out.write(progress.getBytes());
             percentDone += 0.0001;
           } catch(IOException e) {
@@ -171,8 +173,13 @@ class OrbitOfNumber {
     }
 
     // Let the user know our calculations are complete
-    System.out.println("\nCalculation Progress: 100%");
-    System.out.println("\nCalculation Complete.");
+    try {
+      String progress ="\rCalculation Progress: 100%    ";
+      System.out.write(progress.getBytes());
+      System.out.println("\nCalculation Complete.");
+    } catch(IOException e) {
+      // Do nothing
+    }
   }
 
 
@@ -206,6 +213,42 @@ class OrbitOfNumber {
 
 
 
+  private static void calculateError() {
+    BigDecimal calculatedValue = new BigDecimal("0.0");
+    BigDecimal error = new BigDecimal("0.0");
+    System.out.println("\nCalculating Accuracy...");
+    for (int i = 0; i < maxIterations; i++) {
+      if (ORBIT_VALUES.get(i) == '1') {
+        calculatedValue = calculatedValue.add(new BigDecimal("1.0")).divide(base.pow(i+1), maxIterations, RoundingMode.HALF_UP);
+        error = (number.subtract(calculatedValue)).abs();
+        error = error.divide(number, maxIterations, RoundingMode.HALF_UP);
+        error = error.multiply(new BigDecimal("100.0"));
+
+          if (i%5 == 0) {
+          try {
+            String progress = "\rComputed Error: "+error.setScale(maxIterations, RoundingMode.HALF_UP)+"%";
+            System.out.write(progress.getBytes());
+          } catch(IOException e) {
+            System.out.println("Gosh darned IOException.");
+          }
+        }
+      } else {
+        // Do nothing
+      }
+    }
+    try {
+      String progress = "\rComputed Error: "+error.setScale(30, RoundingMode.HALF_UP)+"%    ";
+      System.out.write(progress.getBytes());
+      System.out.println("\nCalculation Complete.");
+    } catch(IOException e) {
+      System.out.println("Gosh darned IOException.");
+    }
+  }
+
+
+
+
+
   public static void main(String[] args) throws IOException {
     printDescription();
     getUserInput();
@@ -216,5 +259,6 @@ class OrbitOfNumber {
     } else {
     printOrbitToConsole();
     }
+    calculateError();
   }
 }

@@ -1,12 +1,13 @@
 /*
 *  Filename: OrbitOfNumber.java
 *  Author: Connor Baker
-*  Version: 0.1a
+*  Version: 0.1b
 *  Date created: March 14, 2017
 *  Last updated: March 15, 2017
 *
 *  Description: Calculate the orbit of a number in a given base, using the
-*               formula y = ((base)*(number))(mod 1).
+*               formula y = ((base)*(number))(mod 1). The orbit of a number is
+*               the non-terminating fractional representation. An example of *               the orbit of one in base ten is 0.999999...
 *
 *  Todo: Get the program to work well for bases larger than 1.9 repeating.
 */
@@ -26,7 +27,6 @@ import java.io.PrintWriter;
 
 class OrbitOfNumber {
   // Initialize our variables
-  private final static BigDecimal VALUEOFZERO = new BigDecimal("0.0");
   private static BigDecimal base;
   private static BigDecimal floorOfBase;
   private static BigDecimal number;
@@ -38,13 +38,33 @@ class OrbitOfNumber {
 
 
 
+  private static void printDescription() {
+    System.out.println("/*"
+    +"\n*  Filename: OrbitOfNumber.java"
+    +"\n*  Author: Connor Baker"
+    +"\n*  Version: 0.1b"
+    +"\n*  Date created: March 14, 2017"
+    +"\n*  Last updated: March 15, 2017"
+    +"\n*"
+    +"\n*  Description: Calculate the orbit of a number in a given base, using the"
+    +"\n*               formula y = ((base)*(number))(mod 1). The orbit of a number is"
+    +"\n*               the non-terminating fractional representation. An example of"
+    +"\n*               the orbit of one in base ten is 0.999999..."
+    +"\n*"
+    +"\n*  Todo: Get the program to work well for bases larger than 1.9 repeating."
+    +"\n");
+  }
+
+
+
+
   // Method to grab user input
   private static void getUserInput() {
     // Create our scanner
     final Scanner grabber = new Scanner(System.in);
 
     // Prompt for base
-    System.out.println("Input the base to use as a decimal (larger than one):");
+    System.out.println("Input the base to use as a decimal in the range (1,2):");
     base = new BigDecimal(grabber.nextLine());
 
     // Prompt for number
@@ -53,7 +73,7 @@ class OrbitOfNumber {
 
     // Prompt for max number of iterations
     System.out.println("Input the maximum number of iterations you will "
-        +"allow (enter 0 for none):");
+        +"allow (enter 0 for the largest possible, the size of an int):");
     maxIterations = grabber.nextInt();
 
     // Take care of the case that maxIterations is zero
@@ -97,10 +117,6 @@ class OrbitOfNumber {
         ORBIT_VALUES.add('1');
       } else {
         ORBIT_VALUES.add('0');
-      }
-
-      if (number.compareTo(VALUEOFZERO) == 0) {
-        break;
       }
 
       // Print out progress
@@ -190,6 +206,7 @@ class OrbitOfNumber {
 
 
   public static void main(String[] args) throws IOException {
+    printDescription();
     getUserInput();
     calculateNeededValues();
     calculateOrbit();

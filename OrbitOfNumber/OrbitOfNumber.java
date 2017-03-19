@@ -1,16 +1,14 @@
 /*
 *  Filename: OrbitOfNumber.java
 *  Author: Connor Baker
-*  Version: 0.1e
+*  Version: 0.2a
 *  Date created: March 14, 2017
-*  Last updated: March 15, 2017
+*  Last updated: March 18, 2017
 *
 *  Description: Calculate the orbit of a number in a given base, using the
 *               formula y = ((base)*(number))(mod 1). The orbit of a number is
 *               the non-terminating fractional representation. An example of
 *               the orbit of one in base ten is 0.999999...
-*
-*  Todo: Get the program to work well for bases larger than 1.9 repeating.
 */
 
 
@@ -43,17 +41,15 @@ class OrbitOfNumber {
     System.out.println("/*"
     +"\n*  Filename: OrbitOfNumber.java"
     +"\n*  Author: Connor Baker"
-    +"\n*  Version: 0.1e"
+    +"\n*  Version: 0.2a"
     +"\n*  Date created: March 14, 2017"
-    +"\n*  Last updated: March 15, 2017"
+    +"\n*  Last updated: March 18, 2017"
     +"\n*"
     +"\n*  Description: Calculate the orbit of a number in a given base, using the"
     +"\n*               formula y = ((base)*(number))(mod 1). The orbit of a number is"
     +"\n*               the non-terminating fractional representation. An example of"
     +"\n*               the orbit of one in base ten is 0.999999..."
-    +"\n*"
-    +"\n*  Todo: Get the program to work well for bases larger than 1.9 repeating."
-    +"\n");
+    +"\n*\\");
   }
 
 
@@ -113,11 +109,13 @@ class OrbitOfNumber {
     double percentDone = 0;
     for (int i = 0; i < maxIterations; i++) {
       number = number.multiply(base);
-      if (number.intValue() == floorOfBaseInt) {
-        number = number.subtract(floorOfBase);
-        ORBIT_VALUES.add('1');
-      } else {
-        ORBIT_VALUES.add('0');
+
+      // We need a for loop that iterates through and uses the counter as the base to check against. This allows us to work with any base in (1,10).
+      for (int j = 0; j <= floorOfBaseInt; j++) {
+        if (number.intValue() == j) {
+          number = number.subtract(new BigDecimal(j));
+          ORBIT_VALUES.add((char)('0'+j));
+        }
       }
 
       // Print out progress
@@ -220,7 +218,7 @@ class OrbitOfNumber {
 
     // Compute the total of our orbit
     for (int i = 0; i < maxIterations; i++) {
-      if (ORBIT_VALUES.get(i) == '1') {
+      if (ORBIT_VALUES.get(i) != '0') {
         calculatedValue = calculatedValue.add(new BigDecimal("1.0")).divide(base.pow(i+1), maxIterations, RoundingMode.HALF_UP); // round to the accuracy provided by the user
       }
     }

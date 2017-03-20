@@ -1,9 +1,9 @@
 /*
 *  Filename: OrbitOfNumber.java
 *  Author: Connor Baker
-*  Version: 0.2a
+*  Version: 0.2b
 *  Date created: March 14, 2017
-*  Last updated: March 18, 2017
+*  Last updated: March 19, 2017
 *
 *  Description: Calculate the orbit of a number in a given base, using the
 *               formula y = ((base)*(number))(mod 1). The orbit of a number is
@@ -61,7 +61,7 @@ class OrbitOfNumber {
     final Scanner grabber = new Scanner(System.in);
 
     // Prompt for base
-    System.out.println("Input the base to use as a decimal in the range (1,2):");
+    System.out.println("Input the non-integer base to use in (1,10):");
     base = new BigDecimal(grabber.nextLine());
 
     // Prompt for number

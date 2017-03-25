@@ -1,9 +1,11 @@
 /*
 *  Filename: Main.java
 *  Author: Connor Baker
-*  Version: 0.1b
-*  Date created: March 13, 2017
-*  Last updated: March 14, 2017
+*  Version: 0.1a
+*  Date created: March 24, 2017
+*  Last updated: March 24, 2017
+*
+*  Description:
 */
 
 
@@ -15,26 +17,29 @@ package automaticallyFindForbiddenStrings;
 
 // Declare our imports
 import java.io.IOException;
-import java.util.Arrays;
 
 
 
 public class Main {
   public static void main(String[] args) throws IOException {
-    ProgramIO.printDescription();
-    PromptUser.promptUser();
-    OrbitOfOneInBase.run(PromptUser.baseToUse);
-    FindForbiddenWords.initializeRequiredVariables();
-    FindForbiddenWords.fillSubwords();
-    System.out.println(Arrays.deepToString(FindForbiddenWords.allSubwords));
-    FindForbiddenWords.flagForbiddenSubwords();
-    FindForbiddenWords.fillForbiddenSubwords();
-    RemoveForbiddenWords.fillAllWords();
-    RemoveForbiddenWords.flagForbiddenWords();
-    if (PromptUser.printToFile) {
-      ProgramIO.printToFile();
-    } else {
-      ProgramIO.printToConsole();
-    }
+    // Call our setup program
+    ProgramSetup.printDescription();
+
+    // Create our object
+    Base newUserBase = new Base();
+
+    // Run the program
+    Base.calculateOrbitOfOne();
+
+    // Decide where to print to
+    // if (ProgramSetup.printToFile) {
+    //   ProgramOutput.printToFile();
+    // } else {
+    //   ProgramOutput.printToConsole();
+    // }
+
+    ForbiddenWords.findForbiddenWords();
+
   }
+
 }

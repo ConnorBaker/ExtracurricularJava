@@ -1,9 +1,9 @@
 /*
-*  Filename: FindForbiddenWords.java
+*  Filename: ForbiddenWords.java
 *  Author: Connor Baker
-*  Version: 0.1b
-*  Date created: March 13, 2017
-*  Last updated: March 14, 2017
+*  Version: 0.1a
+*  Date created: March 24, 2017
+*  Last updated: March 24, 2017
 */
 
 
@@ -14,9 +14,12 @@ package automaticallyFindForbiddenStrings;
 
 
 // Declare our imports
+import java.util.Arrays;
 
 
-public class FindForbiddenWords {
+
+
+public class ForbiddenWords {
   static String[][] allSubwords = null;
   static String[] forbiddenSubwords = null;
   static int numberOfAllowedSubwords;
@@ -26,21 +29,21 @@ public class FindForbiddenWords {
 
 
 
-  public static void initializeRequiredVariables() {
+  public static void buildAllowedWord() {
     // Create the allowed word to use for calculations
-    StringBuilder temp = new StringBuilder(OrbitOfOneInBase.ORBIT_VALUES.size());
-    for (Character tempChar : OrbitOfOneInBase.ORBIT_VALUES) {
+    StringBuilder temp = new StringBuilder(Base.ORBIT_VALUES.size());
+    for (Character tempChar : Base.ORBIT_VALUES) {
       temp.append(tempChar);
     }
     allowedWord = temp.toString();
 
     // Calculate the floor of the base to use
-    baseToUse = OrbitOfOneInBase.floorOfBaseInt;
+    baseToUse = Base.base.intValue();
   }
 
 
 
-  public static void fillSubwords() {
+  public static void findAllSubwords() {
     // Initialize the array of sub words
     allSubwords = new String[allowedWord.length()][3];
 
@@ -66,6 +69,7 @@ public class FindForbiddenWords {
     }
     return new String(temp);
   }
+
 
 
   public static void flagForbiddenSubwords() {
@@ -97,5 +101,16 @@ public class FindForbiddenWords {
         index++;
       }
     }
+  }
+
+
+
+  public static void findForbiddenWords() {
+    buildAllowedWord();
+    findAllSubwords();
+    System.out.println(Arrays.deepToString(allSubwords));
+    flagForbiddenSubwords();
+    System.out.println(Arrays.deepToString(allSubwords));
+    System.out.println(Arrays.deepToString(forbiddenSubwords));
   }
 }

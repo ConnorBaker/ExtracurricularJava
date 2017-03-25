@@ -24,6 +24,7 @@ public class Main {
   public static void main(String[] args) throws IOException {
     // Call our setup program
     ProgramSetup.printDescription();
+    ProgramSetup.promptForPrintToFile();
 
     // Create our object
     Base newUserBase = new Base();

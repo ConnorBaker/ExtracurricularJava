@@ -37,6 +37,11 @@ public class ProgramSetup {
     return base.setScale(0, RoundingMode.DOWN);
   }
 
+  public static int getMaxIterations() {
+    System.out.println("Input the maximum number of iterations to allow");
+    return grabber.nextInt();
+  }
+
   public static void printDescription() {
     System.out.println("This program takes as input a base (1,10) and calculates forbidden subwords and words in that base."
     +"\nFor larger bases, it is recommended to use the option to export to a file.");

@@ -31,15 +31,15 @@ public class Main {
     // Run the program
     Base.calculateOrbitOfOne();
 
-    // Decide where to print to
-    // if (ProgramSetup.printToFile) {
-    //   ProgramOutput.printToFile();
-    // } else {
-    //   ProgramOutput.printToConsole();
-    // }
-
     ForbiddenWords.findForbiddenWords();
 
+
+    // Decide where to print to
+    if (ProgramSetup.printToFile) {
+      ProgramOutput.printToFile();
+    } else {
+      ProgramOutput.printToConsole();
+    }
   }
 
 }

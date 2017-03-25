@@ -29,7 +29,7 @@ public class Base {
   public static final List<Character> ORBIT_VALUES = new ArrayList<>();
   public static BigDecimal base;
   public static BigDecimal floorOfBase;
-  public static int maxIterations = 10;
+  public static int maxIterations = 20;
 
 
 

@@ -107,10 +107,9 @@ public class ForbiddenWords {
 
   public static void findForbiddenWords() {
     buildAllowedWord();
+    System.out.println("Allowed word is "+allowedWord);
     findAllSubwords();
-    System.out.println(Arrays.deepToString(allSubwords));
     flagForbiddenSubwords();
-    System.out.println(Arrays.deepToString(allSubwords));
-    System.out.println(Arrays.deepToString(forbiddenSubwords));
+    fillForbiddenSubwords();
   }
 }
